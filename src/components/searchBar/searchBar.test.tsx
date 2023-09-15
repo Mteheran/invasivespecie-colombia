@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import Main from './main';
+import SearchBar from './searchBar';
 
 test('renders learn react link', () => {
-  render(<Main />);
+  render(<SearchBar />);
 });

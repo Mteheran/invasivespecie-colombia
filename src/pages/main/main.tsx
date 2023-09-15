@@ -1,10 +1,9 @@
 import * as React from "react";
-import './main.css';
-import { Button } from '@chakra-ui/react'
+import Searcher from '../../templates/searcher'
 
 function Main() {
   return (
-    <Button>Hello</Button>
+    <Searcher/>
   );
 }
 
