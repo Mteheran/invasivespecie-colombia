@@ -1,14 +1,12 @@
-import { extendBaseTheme } from '@chakra-ui/react'
-import { theme as ChakraTheme } from '@chakra-ui/theme'
+import { extendTheme } from '@chakra-ui/react'
+import { Button, Card, Input } from './components'
 
-const { Button, Input, Card } = ChakraTheme.components
 
-const theme = extendBaseTheme({
+const theme = extendTheme({
   components: {
     Button,
-    Input,
-    Card
-
+    Card,
+    Input
   },
 })
 

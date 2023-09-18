@@ -11,8 +11,8 @@ function CardList ({cards}: ICardList) {
   return (
     <>
     {
-      cards.map(() => (
-        <Card />
+      cards.map((name, index) => (
+        <Card key={`${name} + ${index}`}/>
       ))
     }
     </>

@@ -4,7 +4,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import router from './components/routes'
-import { ChakraBaseProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import reportWebVitals from './reportWebVitals';
 import theme from './theme'
 
@@ -12,11 +12,11 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <ChakraBaseProvider theme={theme}>
+  <ChakraProvider theme={theme}>
     <React.StrictMode>
       <RouterProvider router={router} />
     </React.StrictMode>
-  </ChakraBaseProvider>
+  </ChakraProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
