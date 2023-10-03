@@ -21,3 +21,33 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Created by https://www.toptal.com/developers/gitignore/api/webstorm,visualstudiocode
+# Edit at https://www.toptal.com/developers/gitignore?templates=webstorm,visualstudiocode
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/*
+
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
+# Built Visual Studio Code Extensions
+*.vsix
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
+
+### WebStorm ###
+# User-specific stuff
+.idea
+
+# CMake
+cmake-build-*/
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
