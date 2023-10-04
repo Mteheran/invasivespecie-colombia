@@ -32,8 +32,8 @@ function Card({card} : CardProps) {
           <Text>
             {card?.commonNames}
           </Text>
-          <Text color='blue.600' fontSize='2xl'>
-            $450
+          <Text color='blue.600'>
+            {card?.scientificName}
           </Text>
         </Stack>
       </CardBody>
@@ -41,10 +41,7 @@ function Card({card} : CardProps) {
       <CardFooter>
         <ButtonGroup spacing='2'>
           <Button variant='solid' colorScheme='blue'>
-            Buy now
-          </Button>
-          <Button variant='ghost' colorScheme='blue'>
-            Add to cart
+            Ver detalle
           </Button>
         </ButtonGroup>
       </CardFooter>
