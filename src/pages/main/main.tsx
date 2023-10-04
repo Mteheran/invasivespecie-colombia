@@ -3,19 +3,21 @@ import Searcher from '../../templates/searcher'
 import { SearcherContext } from "../../context";
 import { useSearchParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import getInvasiveSpecie, { InvasiveSpecie } from "../../services/invasiveSpecie";
+import getInvasiveSpecie from "../../services/invasiveSpecie";
 import InvasiveSpecieModal from "./invasiveSpecieModal";
+import IinvasiveSpecie from "../../interfaces/IinvasiveSpecie";
 
 function Main() {
   const [searchParams, setSearchParams] = useSearchParams();
   const id = searchParams.get("id");
 
-  const [data, setData] = useState<InvasiveSpecie>();
+  const [data, setData] = useState<IinvasiveSpecie>();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    getInvasiveSpecie(id as string)
+    if(id && id!= null) {
+      getInvasiveSpecie(id as string)
       .then(data => {
         if(id !== "")
         {
@@ -24,6 +26,7 @@ function Main() {
         }
       })
       .catch(error => console.error(error));
+    }
   }, [id]);
 
   return (

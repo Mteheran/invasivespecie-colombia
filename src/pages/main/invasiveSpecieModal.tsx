@@ -1,10 +1,10 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from "@chakra-ui/react";
-import { InvasiveSpecie } from "../../services/invasiveSpecie";
+import IinvasiveSpecie from "../../interfaces/IinvasiveSpecie";
 
 interface Props {
   isOpen: boolean;
   onClose: () => void;
-  data: InvasiveSpecie;
+  data: IinvasiveSpecie;
 }
 
 function InvasiveSpecieModal(props: Props) {

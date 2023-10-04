@@ -1,13 +1,7 @@
+import IinvasiveSpecie from '../interfaces/IinvasiveSpecie';
 import { URL } from '../utils/constants'
 
-interface IinvasiveSpecies {
-
-}
-
-export default async function InvasiveSpecies(): Promise<IinvasiveSpecies>{
-  const request = fetch(URL).then(() => {
-    return {}
-  });
-
-  return request;
+export default async function InvasiveSpecies(): Promise<IinvasiveSpecie[]>{
+  const response = await fetch(URL);
+  return response.json();
 }

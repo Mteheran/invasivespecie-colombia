@@ -1,18 +1,17 @@
 import * as React from "react";
 import Card from "../card";
+import IinvasiveSpecie from "../../interfaces/IinvasiveSpecie";
 
-interface ICardList {
-  cards: {
-    name: string
-  }[]
+interface CardListProps {
+  cards: IinvasiveSpecie[] | undefined
 }
 
-function CardList ({cards}: ICardList) {
+function CardList ({cards}: CardListProps) {
   return (
     <>
     {
-      cards.map((name, index) => (
-        <Card key={`${name} + ${index}`}/>
+      cards?.map((card, index) => (
+        <Card card={card}/>
       ))
     }
     </>
