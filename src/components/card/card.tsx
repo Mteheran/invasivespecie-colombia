@@ -11,11 +11,11 @@ import {
   Divider, 
   ButtonGroup  
 } from '@chakra-ui/react';
-import IinvasiveSpecie from "../../interfaces/IinvasiveSpecie";
+import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 
 
 interface CardProps {
-  card: IinvasiveSpecie | undefined
+  card: IInvasiveSpecie | undefined
 }
 
 function Card({card} : CardProps) {

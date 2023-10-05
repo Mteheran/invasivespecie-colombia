@@ -1,50 +1,50 @@
-import * as React from "react";
-import Searcher from '../../templates/searcher'
-import { SearcherContext } from "../../context";
+import React, { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import getInvasiveSpecie from "../../services/invasiveSpecie";
-import InvasiveSpecieModal from "./invasiveSpecieModal";
-import IinvasiveSpecie from "../../interfaces/IinvasiveSpecie";
-import { Heading } from "@chakra-ui/react";
+import Searcher from '../../templates/searcher';
+import { SearcherContext, declaration } from "../../context";
+import fetchInvasiveSpecie, { fetchAllInvasiveSpecies, IInvasiveSpecie } from "../../services/invasiveSpecie";
 
 function Main() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const id = searchParams.get("id");
+  const [params] = useSearchParams();
+  const id = params.get("id");
+  const search = params.get("search");
 
-  const [data, setData] = useState<IinvasiveSpecie>();
-
+  const [specie, setSpecie] = useState<IInvasiveSpecie>(declaration.itemDetail);
+  const [listOfInvasiveSpecies, setListOfInvasiveSpecies] = useState<IInvasiveSpecie[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    if(id && id!= null) {
-      getInvasiveSpecie(id as string)
-      .then(data => {
-        if(id !== "")
-        {
-          setIsModalOpen(true)
-          setData(data)
-        }
-      })
-      .catch(error => console.error(error));
+    if (id) {
+      fetchInvasiveSpecie(id)
+        .then(data => {
+          if (data) {
+            setIsModalOpen(true);
+            setSpecie(data);
+          }
+        })
+        .catch(error => console.error(error));
+    } else {
+      setIsModalOpen(false);
+      setSpecie(declaration.itemDetail);
     }
   }, [id]);
 
+  useEffect(() => {
+    if (search) {
+      fetchAllInvasiveSpecies(search)
+        .then(data => setListOfInvasiveSpecies(data))
+        .catch(error => console.error(error));
+    }
+  }, [search]);
+
   return (
-    <SearcherContext.Provider value={{}}>
-       <Heading size='lg'>Conocer las especies invasoras de colombia y aprende como manejarlas</Heading>
-      <Searcher/>
-      <div>
-        {data && (
-        <InvasiveSpecieModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          data={data}
-        />
-      )}
-      </div>
+    <SearcherContext.Provider value={{
+      itemDetail: specie,
+      itemList: listOfInvasiveSpecies,
+      isModalOpen
+    }}>
+      <Searcher />
     </SearcherContext.Provider>
-    
   );
 }
 

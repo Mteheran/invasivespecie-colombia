@@ -1,3 +1,3 @@
-import SearcherContext from "./searcherContext";
+import SearcherContext, { declaration } from "./searcherContext";
 
-export { SearcherContext };
+export { SearcherContext, declaration };
