@@ -16,7 +16,8 @@ const context = React.useContext(SearcherContext);
     </Box>
     <Box as="main">
       <CardList cards={context.itemList}/>
-      <InvasiveSpecieModal isOpen={context.isModalOpen} data={context.itemDetail}></InvasiveSpecieModal>
+      <InvasiveSpecieModal isOpen={context.isModalOpen} data={context.itemDetail}
+      setIsModalOpen={context.setIsModalOpen}></InvasiveSpecieModal>
     </Box>
     </>
   );

@@ -12,6 +12,9 @@ import {
   ButtonGroup  
 } from '@chakra-ui/react';
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
+import { useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import { SearcherContext } from "../../context";
 
 
 interface CardProps {
@@ -19,6 +22,24 @@ interface CardProps {
 }
 
 function Card({card} : CardProps) {
+  const navigate = useNavigate();
+  const [params] = useSearchParams();
+  const context = React.useContext(SearcherContext);
+
+
+  const search = params.get("search");
+
+  const openModalDetails = (id:number) => {
+    context.setIsModalOpen(true);
+    if(search) {
+      navigate(`?search=${search}&id=${id}`);
+    }
+    else {
+    navigate(`?id=${id}`);
+    }
+    
+  }
+
   return (
     <DesignCard maxW='sm'>
       <CardBody>
@@ -40,7 +61,8 @@ function Card({card} : CardProps) {
       <Divider />
       <CardFooter>
         <ButtonGroup spacing='2'>
-          <Button variant='solid' colorScheme='blue'>
+          <Button variant='solid' colorScheme='blue'
+          onClick={()=> openModalDetails(card ? card?.id : 0)}>
             Ver detalle
           </Button>
         </ButtonGroup>

@@ -6,6 +6,7 @@ interface ISearcherContext {
   itemList: IInvasiveSpecie[];
   isModalOpen: boolean;
   searchValue: string;
+  setIsModalOpen: any;
 }
 
 export const declaration = {
@@ -21,7 +22,8 @@ export const declaration = {
   },
   itemList: [],
   isModalOpen: false,
-  searchValue: ''
+  searchValue: '',
+  setIsModalOpen: () => {}
 } 
 
 const SearcherContext = createContext<ISearcherContext>(declaration);

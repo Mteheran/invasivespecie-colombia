@@ -17,6 +17,9 @@ const SearchBar: FC<SearchComponentProps> = ({ value }) => {
     if (debouncedSearchTerm) {
       navigate(`?search=${search}`);
     }
+    else {
+      navigate(`#`);
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearchTerm]);
 

@@ -35,6 +35,9 @@ function Main() {
         .then(data => setListOfInvasiveSpecies(data))
         .catch(error => console.error(error));
     }
+    else {
+      setListOfInvasiveSpecies([]);
+    }
   }, [search]);
 
   return (
@@ -42,7 +45,8 @@ function Main() {
       itemDetail: specie,
       itemList: listOfInvasiveSpecies,
       isModalOpen,
-      searchValue: search ?? ''
+      searchValue: search ?? '',
+      setIsModalOpen: setIsModalOpen
     }}>
       <Searcher />
     </SearcherContext.Provider>

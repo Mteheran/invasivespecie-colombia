@@ -17,6 +17,6 @@ export default async function getInvasiveSpecie(id: string): Promise<IInvasiveSp
 }
 
 export async function fetchAllInvasiveSpecies(param: string): Promise<IInvasiveSpecie[]>{
-  const response = await fetch(URL);
+  const response = await fetch(`${URL}\\search\\${param}`);
   return response.json();
 }
