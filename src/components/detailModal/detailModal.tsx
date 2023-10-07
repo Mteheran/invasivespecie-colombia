@@ -1,5 +1,5 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, 
-  ModalCloseButton, Badge } from "@chakra-ui/react";
+  ModalCloseButton, Badge, Spinner  } from "@chakra-ui/react";
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 
 interface Props {
@@ -25,6 +25,7 @@ function InvasiveSpecieModal(props: Props) {
   }
 
   return (
+    data?.id > 0 ? 
     <Modal isOpen={isOpen} onClose={() => {setIsModalOpen(false)}}>
       <ModalOverlay />
       <ModalContent>
@@ -40,6 +41,7 @@ function InvasiveSpecieModal(props: Props) {
         </ModalBody>
       </ModalContent>
     </Modal>
+    : isOpen ? <Spinner /> : <></>
   );
 }
 

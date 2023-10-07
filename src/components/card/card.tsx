@@ -30,14 +30,13 @@ function Card({card} : CardProps) {
   const search = params.get("search");
 
   const openModalDetails = (id:number) => {
-    context.setIsModalOpen(true);
     if(search) {
       navigate(`?search=${search}&id=${id}`);
     }
     else {
     navigate(`?id=${id}`);
     }
-    
+    context.setIsModalOpen(true);
   }
 
   return (
