@@ -41,7 +41,8 @@ function Main() {
     <SearcherContext.Provider value={{
       itemDetail: specie,
       itemList: listOfInvasiveSpecies,
-      isModalOpen
+      isModalOpen,
+      searchValue: search ?? ''
     }}>
       <Searcher />
     </SearcherContext.Provider>

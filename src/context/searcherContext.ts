@@ -5,6 +5,7 @@ interface ISearcherContext {
   itemDetail: IInvasiveSpecie;
   itemList: IInvasiveSpecie[];
   isModalOpen: boolean;
+  searchValue: string;
 }
 
 export const declaration = {
@@ -19,7 +20,8 @@ export const declaration = {
     urlImage: ''
   },
   itemList: [],
-  isModalOpen: false
+  isModalOpen: false,
+  searchValue: ''
 } 
 
 const SearcherContext = createContext<ISearcherContext>(declaration);

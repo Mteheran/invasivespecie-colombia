@@ -12,7 +12,7 @@ const context = React.useContext(SearcherContext);
   return (
     <>
     <Box as="header">
-      <SearchBar/>
+      <SearchBar value={context.searchValue}/>
     </Box>
     <Box as="main">
       <CardList cards={context.itemList}/>
