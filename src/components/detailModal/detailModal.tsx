@@ -1,4 +1,5 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalCloseButton } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, 
+  ModalCloseButton, Badge } from "@chakra-ui/react";
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 
 interface Props {
@@ -13,11 +14,11 @@ function InvasiveSpecieModal(props: Props) {
   const GetRiskLevelLabel = (riskLevel: number)=> {
     switch (riskLevel) {
       case 0:
-        return "Bajo"
+        return <Badge>Bajo</Badge>
       case 1:
-        return "Medio"
+        return <Badge colorScheme='orange'>Medio</Badge>
       case 2:
-        return "Alto"
+        return <Badge colorScheme='red'>Alto</Badge>
       default:
         return "";
     }
