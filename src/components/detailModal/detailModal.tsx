@@ -1,6 +1,7 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, 
   ModalCloseButton, Badge, Spinner  } from "@chakra-ui/react";
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
+import ImageContainer from "../imageContainer";
 
 interface Props {
   isOpen: boolean;
@@ -32,7 +33,7 @@ function InvasiveSpecieModal(props: Props) {
         <ModalHeader>{data.name}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <img src={data.urlImage} alt="Imagen de la especie invasora" />
+          <ImageContainer imgURL={data.urlImage} imgAlt={data.name}/>
           <p>Nivel de riesgo: {GetRiskLevelLabel(data.riskLevel)}</p>
           <p>Nombre científico: {data.scientificName}</p>
           <p>Nombres comunes: {data.commonNames}</p>

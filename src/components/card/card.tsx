@@ -1,21 +1,20 @@
 import * as React from "react";
-import { 
-  Button, 
-  Card as DesignCard, 
-  Image, 
-  CardBody, 
-  CardFooter, 
-  Stack, 
-  Heading, 
-  Text, 
-  Divider, 
-  ButtonGroup  
+import {
+  Button,
+  Card as DesignCard,
+  CardBody,
+  CardFooter,
+  Stack,
+  Heading,
+  Text,
+  Divider,
+  ButtonGroup
 } from '@chakra-ui/react';
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { SearcherContext } from "../../context";
-
+import ImageContainer from "../imageContainer";
 
 interface CardProps {
   card: IInvasiveSpecie | undefined
@@ -40,13 +39,9 @@ function Card({card} : CardProps) {
   }
 
   return (
-    <DesignCard maxW='sm'>
-      <CardBody>
-        <Image
-          src={card?.urlImage}
-          alt={card?.name}
-          borderRadius='lg'
-        />
+    <DesignCard maxW='sm' alignItems="center">
+      <CardBody  display="flex" alignItems="center" flexDirection="column">
+        <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name}/>
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{card?.name}</Heading>
           <Text>
