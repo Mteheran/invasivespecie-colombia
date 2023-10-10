@@ -1,6 +1,8 @@
-import { Skeleton, Image } from "@chakra-ui/react";
+import { Skeleton, Image, IconButton, 
+  Flex, Box, Tooltip  } from "@chakra-ui/react";
 import { useState } from "react";
 import ImageModal from "../imageModal";
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
   const { imgURL, imgAlt } = props;
@@ -21,6 +23,8 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
             borderRadius='lg'
             isLoaded={imageReady}
         >
+          <Flex color='white'>
+          <Box>
           <Image
               boxSize='300px'
               objectFit='cover'
@@ -33,6 +37,16 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
                 setIsModalOpen(true);
               }}
           />
+          </Box>
+          <Box>
+          <Tooltip label='Expandir imagen'>
+            <IconButton aria-label='Expandir imagen' 
+            marginLeft={2}
+            icon={<ExternalLinkIcon />}
+            onClick={()=> setIsModalOpen(true)} />
+          </Tooltip>
+          </Box>
+          </Flex>
         </Skeleton>
         <ImageModal isOpen={isModalOpen} url={imgURL ? imgURL : ""} setIsModalOpen={setIsModalOpen}/>
     </>

@@ -1,5 +1,5 @@
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, 
-  ModalCloseButton, Badge, Spinner  } from "@chakra-ui/react";
+  ModalCloseButton, Badge, Spinner, Text } from "@chakra-ui/react";
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 import ImageContainer from "../imageContainer";
 
@@ -34,11 +34,11 @@ function InvasiveSpecieModal(props: Props) {
         <ModalCloseButton />
         <ModalBody>
           <ImageContainer imgURL={data.urlImage} imgAlt={data.name}/>
-          <p>Nivel de riesgo: {GetRiskLevelLabel(data.riskLevel)}</p>
-          <p>Nombre científico: {data.scientificName}</p>
-          <p>Nombres comunes: {data.commonNames}</p>
-          <p>Impacto: {data.impact}</p>
-          <p>Manejo: {data.manage}</p>
+          <Text as='b'>Nivel de riesgo:</Text><p> {GetRiskLevelLabel(data.riskLevel)}</p>
+          <Text as='b'>Nombre científico:</Text><p> {data.scientificName}</p>
+          <Text as='b'>Nombres comunes:</Text><p> {data.commonNames}</p>
+          <Text as='b'>Impacto:</Text><p> {data.impact}</p>
+          <Text as='b'>Manejo:</Text><p> {data.manage}</p>
         </ModalBody>
       </ModalContent>
     </Modal>

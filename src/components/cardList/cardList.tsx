@@ -13,7 +13,7 @@ function CardList ({cards}: CardListProps) {
   }
 
   return (
-    <Box display="flex" alignItems="center" flexDirection="column">
+    <Box display="flex" alignItems="center" flexDirection="row" maxWidth={10000} flexWrap={'wrap'}>
     {
       cards?.map((card, index) => (
         <Card card={card} key={card.id}/>

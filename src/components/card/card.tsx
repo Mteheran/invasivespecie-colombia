@@ -10,7 +10,7 @@ import {
   Divider,
   ButtonGroup,
   Link,
-  Box
+  Box, 
 } from '@chakra-ui/react';
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 import { useNavigate } from "react-router-dom";
@@ -54,17 +54,25 @@ function Card({card} : CardProps) {
             <Text as='b' textAlign='center'>
               Nombres comunes
             </Text>
-            <Text noOfLines={readMore ? undefined : 1}>
-              {card?.commonNames}
-            </Text>
-            { readMore ?
-              <Link color='teal.500' onClick={() => {setReadMore(false)}}>
-                ver menos...
-              </Link>
+            {card?.commonNames && card?.commonNames.length < 35 ? 
+              <Text>
+                {card?.commonNames}
+              </Text>
+            :
+            <Box>
+              <Text noOfLines={readMore && card?.commonNames && card?.commonNames.length > 35 ? undefined : 1}>
+                {card?.commonNames}
+              </Text>
+              { readMore ?
+                <Link color='teal.500' onClick={() => {setReadMore(false)}}>
+                  ver menos...
+                </Link>
               : 
               <Link color='teal.500' onClick={() => {setReadMore(true)}}>
                 ver todo...
               </Link>
+              }
+            </Box>
             }
           </Box>
         </Stack>
