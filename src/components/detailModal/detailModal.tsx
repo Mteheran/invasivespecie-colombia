@@ -27,7 +27,7 @@ function InvasiveSpecieModal(props: Props) {
 
   return (
     data?.id > 0 ? 
-    <Modal isOpen={isOpen} onClose={() => {setIsModalOpen(false)}}>
+    <Modal isOpen={isOpen} onClose={() => {setIsModalOpen(false)}} >
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>{data.name}</ModalHeader>

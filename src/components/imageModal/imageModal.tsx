@@ -15,7 +15,7 @@ function InvasiveSpecieModal(props: Props) {
     <Modal 
       isOpen={isOpen} 
       onClose={() => {setIsModalOpen(false)}}
-      size="xl"
+      size="full"
       isCentered
     >
       <ModalOverlay
@@ -24,6 +24,7 @@ function InvasiveSpecieModal(props: Props) {
       />
       <ModalContent 
         maxHeight="80vh"
+        minWidth="xl"
         bg='transparent'
         boxShadow='none'
       >
