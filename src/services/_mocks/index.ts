@@ -1,3 +1,3 @@
-import InvasiveSpecies from '../invasiveSpecies'
+import InvasiveSpecies from './invasiveSpecies'
 
 export { InvasiveSpecies };

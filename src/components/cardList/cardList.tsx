@@ -1,21 +1,25 @@
 import * as React from "react";
 import Card from "../card";
+import { IInvasiveSpecie } from "../../services/invasiveSpecie";
+import {Box} from "@chakra-ui/react";
 
-interface ICardList {
-  cards: {
-    name: string
-  }[]
+interface CardListProps {
+  cards: IInvasiveSpecie[]
 }
 
-function CardList ({cards}: ICardList) {
+function CardList ({cards}: CardListProps) {
+  if (!cards || cards.length === 0) {
+    return null;
+  }
+
   return (
-    <>
+    <Box display="flex" alignItems="center" flexDirection="row" maxWidth={10000} flexWrap={'wrap'}>
     {
-      cards.map((name, index) => (
-        <Card key={`${name} + ${index}`}/>
+      cards?.map((card, index) => (
+        <Card card={card} key={card.id}/>
       ))
     }
-    </>
+    </Box>
   );
 }
 
