@@ -1,7 +1,7 @@
 import { Skeleton, Image, IconButton, Tooltip  } from "@chakra-ui/react";
 import { useState } from "react";
 import ImageModal from "../imageModal";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { BsArrowsFullscreen } from "react-icons/bs";
 
 function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
   const { imgURL, imgAlt } = props;
@@ -39,7 +39,7 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
               position={'absolute'}
               bottom='1rem'
               right='1rem'
-              icon={<ExternalLinkIcon />}
+              icon={<BsArrowsFullscreen />}
               onClick={()=> setIsModalOpen(true)} 
               variant={"solid"}
               background={"blackAlpha.700"}

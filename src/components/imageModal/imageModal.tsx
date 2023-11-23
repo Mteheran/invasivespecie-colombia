@@ -95,7 +95,6 @@ function InvasiveSpecieModal(props: Props) {
                 objectFit='contain'
                 height={`${imageHeight}px`}
                 width={`${imageWidth}px`}
-                
               />
             </Box>
           </Center>
