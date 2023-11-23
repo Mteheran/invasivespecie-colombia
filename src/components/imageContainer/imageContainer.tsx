@@ -12,7 +12,7 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
   const handleLoad = () => {
     setTimeout(() => {
       setImageReady(true);
-    }, 2000);
+    }, 200);
   }
 
   return (
