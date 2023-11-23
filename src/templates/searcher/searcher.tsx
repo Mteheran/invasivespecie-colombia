@@ -1,18 +1,61 @@
 import * as React from "react";
 import SearchBar from "../../components/searchBar";
 import CardList from "../../components/cardList";
-import {Box, Center, Flex, Heading, Link, Text} from "@chakra-ui/react";
+import {Box, Center, Flex, Heading, Link, Spacer, Text, useMediaQuery} from "@chakra-ui/react";
 import { SearcherContext } from "../../context";
 import InvasiveSpecieModal from "../../components/detailModal";
 import {ExternalLinkIcon} from "@chakra-ui/icons";
+import {useEffect, useState} from "react";
 
 
 function Searcher() {
-const context = React.useContext(SearcherContext);
+  const context = React.useContext(SearcherContext);
+  
+  const [isSmallWindow] = useMediaQuery("(max-width: 800px)");
+
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  useEffect(() => {
+    const checkScroll = () => {
+      setShowSearchBar(window.scrollY >= 200);
+    };
+
+    window.addEventListener('scroll', checkScroll);
+
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
+  }, []);
 
   return (
       <>
-        <Center bg='purple.500' h='100px' py='125px' color='white'>
+        <Flex
+            flexDirection={isSmallWindow ? 'column' : 'row'}
+            as="header"
+            py='10px' 
+            px='10%'
+            bg='purple.500'
+            color='white'
+            position='fixed'
+            top='0'
+            width='100%'
+            zIndex='9999'
+            transition='transform 0.2s ease-in-out'
+            transform={showSearchBar ? 'translateY(0)' : 'translateY(-100%)'}
+        >
+            <Center display={isSmallWindow? 'none':'flex'}>
+                <Heading size='md'>{"Especies Invasoras - API Colombia"}</Heading>
+            </Center>
+            <Center display={isSmallWindow? 'flex':'none'} flexDirection={'column'} mb='0.5rem'>
+                <Heading size='md'>{"Especies Invasoras"}</Heading>
+                <Heading size='sm'>{"API Colombia"}</Heading>
+            </Center>
+            <Spacer />
+            <Center w={isSmallWindow? '100%':'60%'}>
+              <SearchBar value={context.searchValue}/>
+            </Center>
+        </Flex>
+        <Center bg='purple.500' py='50px' color='white' px={isSmallWindow?'10%':'none'}>
           <Flex direction='column'>
             <Center>
             <Heading size='lg'>{"Especies Invasoras"}</Heading>
@@ -22,7 +65,12 @@ const context = React.useContext(SearcherContext);
                 API Colombia <ExternalLinkIcon mx='2px' />
               </Link>
             </Text>
-            <Box as="header">
+            <Box 
+              as="header" 
+              py='10px' 
+              px='15%'
+              bg='purple.500'
+            >
               <SearchBar value={context.searchValue}/>
             </Box>
           </Flex>
