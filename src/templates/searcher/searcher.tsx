@@ -18,7 +18,7 @@ const context = React.useContext(SearcherContext);
             <Heading size='lg'>{"Especies Invasoras"}</Heading>
             </Center>
             <Text pb='1rem'>Visualizador de especies invasoras en Colombia potenciado por{' '}
-              <Link href='https://api-colombia.com' isExternal>
+              <Link href='https://api-colombia.com' isExternal textDecoration="underline">
                 API Colombia <ExternalLinkIcon mx='2px' />
               </Link>
             </Text>
