@@ -7,7 +7,8 @@ import {
   Spinner,
   IconButton,
   Center,
-  Image
+  Image,
+  Box
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
@@ -20,7 +21,7 @@ interface Props {
 function InvasiveSpecieModal(props: Props) {
   const { isOpen, url, setIsModalOpen } = props;
 
-  const [dimensions, setDimensions] = useState({ 
+  const [windowDimensions, setDimensions] = useState({ 
     height: window.innerHeight, 
     width: window.innerWidth 
   });
@@ -40,8 +41,32 @@ function InvasiveSpecieModal(props: Props) {
     };
   }, []);
 
-  const imageHeight = dimensions.height * 0.9;
-  const imageWidth = dimensions.width * 0.9;
+  let imageHeight = windowDimensions.height * 0.9;
+  let imageWidth = windowDimensions.width * 0.9;
+
+  const [imageDimensions, setImageDimensions] = useState({
+    height: 0,
+    width: 0
+  });
+  useEffect(() => {
+    const img = new window.Image();
+    img.src = url;
+    img.onload = () => {
+      setImageDimensions({
+        width: img.width,
+        height: img.height
+      });
+    };
+  }, [url]);
+
+  // Horizontally scaling
+  const tempImageHeight = ( windowDimensions.width / imageDimensions.width ) * imageDimensions.height;
+  // Checking if it fits inside the screen
+  if (tempImageHeight <= windowDimensions.height) {
+    imageHeight = tempImageHeight;
+  } else {
+    imageWidth = ( windowDimensions.height / imageDimensions.height ) * imageDimensions.width;
+  }
 
   return (
     url?.length > 0 ? 
@@ -59,16 +84,20 @@ function InvasiveSpecieModal(props: Props) {
           width="100%"
           bg='transparent'
           boxShadow='none'
+          onClick={() => setIsModalOpen(false)}
         >
         <ModalBody height="100%" maxWidth="100%" p='0px'>
           <Center height="100%" width="100%">
-            <Image 
-              src={url} 
-              alt="Imagen de la especie invasora"
-              objectFit='contain'
-              height={`${imageHeight}px`}
-              width={`${imageWidth}px`}
-            />
+            <Box onClick={(event) => event.stopPropagation()}>
+              <Image 
+                src={url} 
+                alt="Imagen de la especie invasora"
+                objectFit='contain'
+                height={`${imageHeight}px`}
+                width={`${imageWidth}px`}
+                
+              />
+            </Box>
           </Center>
         </ModalBody>
         <IconButton
