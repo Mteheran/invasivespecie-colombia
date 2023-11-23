@@ -1,5 +1,13 @@
 import { CloseIcon } from "@chakra-ui/icons";
-import { Modal, ModalOverlay, ModalContent, ModalBody, Spinner, IconButton, Center, ModalHeader  } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalBody,
+  Spinner,
+  IconButton,
+  Center
+} from "@chakra-ui/react";
 
 interface Props {
   isOpen: boolean;
@@ -19,29 +27,27 @@ function InvasiveSpecieModal(props: Props) {
       isCentered
     >
       <ModalOverlay
-        bg='blackAlpha.300'
-        backdropFilter='blur(10px) hue-rotate(90deg)'
+        backdropFilter='blur(10px)'
       />
       <ModalContent 
-        maxHeight="80vh"
-        minWidth="xl"
-        bg='transparent'
-        boxShadow='none'
-      >
+          maxHeight="80vh"
+          minWidth="xl"
+          bg='transparent'
+          boxShadow='none'
+        >
         <ModalBody >
-          <Center >
+          <Center>
             <img src={url} alt="Imagen de la especie invasora"/>
           </Center>
-          
         </ModalBody>
         <IconButton
-          bg="gray.500"
+          background={"blackAlpha.700"}
           border="none"
           borderRadius="50%"
           aria-label="Close modal"
           icon={<CloseIcon color='white'/>}
-          position="absolute"
-          top="-2.5rem"
+          position="fixed"
+          top="1rem"
           right="1rem"
           onClick={() => {setIsModalOpen(false)}}
         />
