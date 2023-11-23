@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 import Searcher from '../../templates/searcher';
 import { SearcherContext, declaration } from "../../context";
 import fetchInvasiveSpecie, { fetchAllInvasiveSpecies, IInvasiveSpecie } from "../../services/invasiveSpecie";
-import {Container} from "@chakra-ui/react";
 
 function Main() {
   const [params] = useSearchParams();
@@ -49,9 +48,7 @@ function Main() {
       searchValue: search ?? '',
       setIsModalOpen: setIsModalOpen
     }}>
-      <Container>
         <Searcher />
-      </Container>
     </SearcherContext.Provider>
   );
 }
