@@ -6,8 +6,10 @@ import {
   ModalBody,
   Spinner,
   IconButton,
-  Center
+  Center,
+  Image
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 
 interface Props {
   isOpen: boolean;
@@ -17,6 +19,29 @@ interface Props {
 
 function InvasiveSpecieModal(props: Props) {
   const { isOpen, url, setIsModalOpen } = props;
+
+  const [dimensions, setDimensions] = useState({ 
+    height: window.innerHeight, 
+    width: window.innerWidth 
+  });
+
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        height: window.innerHeight,
+        width: window.innerWidth
+      });
+    }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const imageHeight = dimensions.height * 0.9;
+  const imageWidth = dimensions.width * 0.9;
 
   return (
     url?.length > 0 ? 
@@ -30,14 +55,20 @@ function InvasiveSpecieModal(props: Props) {
         backdropFilter='blur(10px)'
       />
       <ModalContent 
-          maxHeight="80vh"
-          minWidth="xl"
+          height="100%"
+          width="100%"
           bg='transparent'
           boxShadow='none'
         >
-        <ModalBody >
-          <Center>
-            <img src={url} alt="Imagen de la especie invasora"/>
+        <ModalBody height="100%" maxWidth="100%" p='0px'>
+          <Center height="100%" width="100%">
+            <Image 
+              src={url} 
+              alt="Imagen de la especie invasora"
+              objectFit='contain'
+              height={`${imageHeight}px`}
+              width={`${imageWidth}px`}
+            />
           </Center>
         </ModalBody>
         <IconButton
