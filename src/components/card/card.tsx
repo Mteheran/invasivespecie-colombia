@@ -42,46 +42,31 @@ function Card({card} : CardProps) {
   }
 
   return (
-    <DesignCard maxW='sm' alignItems="center" boxShadow="0px 0px 5px rgba(0, 0, 0, 0.25)" borderRadius="lg" m="1rem">
-      <CardBody>
-        <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name}/>
-        <Stack mt='6' spacing='3'>
+    <DesignCard 
+      maxW='sm' 
+      alignItems="center" 
+      boxShadow="0px 0px 5px rgba(0, 0, 0, 0.25)" 
+      borderRadius="lg" 
+      m="1rem"
+      overflow={'hidden'}
+    >
+      <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name}/>
+      <CardBody width={'100%'} p='10px'>
+        <Stack spacing='1'>
           <Heading size='md'>{card?.name}</Heading>
           <Text color='blue.600'>
             {card?.scientificName}
           </Text>
-          <Box borderWidth="1px" borderRadius="lg" p="1rem">
-            <Text as='b' textAlign='center'>
-              Nombres comunes
-            </Text>
-            {card?.commonNames && card?.commonNames.length < 35 ? 
-              <Text>
-                {card?.commonNames}
-              </Text>
-            :
-            <Box>
-              <Text noOfLines={readMore && card?.commonNames && card?.commonNames.length > 35 ? undefined : 1}>
-                {card?.commonNames}
-              </Text>
-              { readMore ?
-                <Link color='teal.500' onClick={() => {setReadMore(false)}}>
-                  ver menos...
-                </Link>
-              : 
-              <Link color='teal.500' onClick={() => {setReadMore(true)}}>
-                ver todo...
-              </Link>
-              }
-            </Box>
-            }
-          </Box>
         </Stack>
       </CardBody>
-      <Divider />
-      <CardFooter>
-        <ButtonGroup spacing='2'>
-          <Button variant='solid' colorScheme='blue'
-          onClick={()=> openModalDetails(card ? card?.id : 0)}>
+      <Divider borderColor="gray.300"/>
+      <CardFooter width={'100%'} py='5px' display='flex' alignContent='center' justifyContent='center'>
+        <ButtonGroup>
+          <Button 
+            variant='ghost' 
+            colorScheme='blue'
+            onClick={()=> openModalDetails(card ? card?.id : 0)}
+          >
             Ver detalle
           </Button>
         </ButtonGroup>
