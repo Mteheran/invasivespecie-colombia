@@ -9,15 +9,12 @@ import {
   Text,
   Divider,
   ButtonGroup,
-  Link,
-  Box, 
 } from '@chakra-ui/react';
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { SearcherContext } from "../../context";
 import ImageContainer from "../imageContainer";
-import {useState} from "react";
 
 interface CardProps {
   card: IInvasiveSpecie | undefined
@@ -27,7 +24,6 @@ function Card({card} : CardProps) {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const context = React.useContext(SearcherContext);
-  const [ readMore, setReadMore ] = useState(false);
 
   const search = params.get("search");
 

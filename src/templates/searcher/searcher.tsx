@@ -1,9 +1,10 @@
 import * as React from "react";
 import SearchBar from "../../components/searchBar";
 import CardList from "../../components/cardList";
-import {Box, Center, Flex} from "@chakra-ui/react";
+import {Box, Center, Flex, Heading, Link, Text} from "@chakra-ui/react";
 import { SearcherContext } from "../../context";
 import InvasiveSpecieModal from "../../components/detailModal";
+import {ExternalLinkIcon} from "@chakra-ui/icons";
 
 
 function Searcher() {
@@ -14,11 +15,13 @@ const context = React.useContext(SearcherContext);
         <Center bg='purple.500' h='100px' py='125px' color='white'>
           <Flex direction='column'>
             <Center>
-              <h1>
-                Especies Invasoras
-              </h1>
+            <Heading size='lg'>{"Especies Invasoras"}</Heading>
             </Center>
-            <h2>Visualizador de especies invasoras usando <a href="https://api-colombia.com" target="_blank" rel="noopener noreferrer">API Colombia</a></h2>
+            <Text pb='1rem'>Visualizador de especies invasoras en Colombia potenciado por{' '}
+              <Link href='https://api-colombia.com' isExternal>
+                API Colombia <ExternalLinkIcon mx='2px' />
+              </Link>
+            </Text>
             <Box as="header">
               <SearchBar value={context.searchValue}/>
             </Box>
