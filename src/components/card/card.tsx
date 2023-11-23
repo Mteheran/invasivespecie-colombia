@@ -42,8 +42,8 @@ function Card({card} : CardProps) {
   }
 
   return (
-    <DesignCard maxW='sm' alignItems="center" borderWidth="1px" borderRadius="lg" p="1rem" m="1rem">
-      <CardBody  display="flex" alignItems="center" flexDirection="column">
+    <DesignCard maxW='sm' alignItems="center" boxShadow="0px 0px 5px rgba(0, 0, 0, 0.25)" borderRadius="lg" m="1rem">
+      <CardBody>
         <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name}/>
         <Stack mt='6' spacing='3'>
           <Heading size='md'>{card?.name}</Heading>
