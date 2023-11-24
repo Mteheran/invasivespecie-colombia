@@ -80,6 +80,7 @@ function InvasiveSpecieModal(props: Props) {
         backdropFilter='blur(10px)'
       />
       <ModalContent 
+          zIndex={9999}
           height="100%"
           width="100%"
           bg='transparent'

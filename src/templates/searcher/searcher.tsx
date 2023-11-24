@@ -39,7 +39,7 @@ function Searcher() {
             position='fixed'
             top='0'
             width='100%'
-            zIndex='9999'
+            zIndex='999'
             transition='transform 0.2s ease-in-out'
             transform={showSearchBar ? 'translateY(0)' : 'translateY(-100%)'}
         >
