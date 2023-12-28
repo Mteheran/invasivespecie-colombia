@@ -14,6 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { SearcherContext } from "../../context";
 import ImageContainer from "../imageContainer";
+import ShareModal from "../shareModal";
 
 interface CardProps {
   card: IInvasiveSpecie | undefined
@@ -23,6 +24,8 @@ function Card({card} : CardProps) {
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const context = React.useContext(SearcherContext);
+
+  const [isModalOpen, setIsModalOpen] = React.useState(false); // Declare isModalOpen variable
 
   const search = params.get("search");
 
@@ -35,6 +38,12 @@ function Card({card} : CardProps) {
     }
     context.setIsModalOpen(true);
   }
+
+  const openModalShare = (id:number) => {
+    setIsModalOpen(true);
+  }
+
+  const ShareUrl = (new URL(document.URL).origin) + "/?id=" + card?.id;
 
   return (
     <DesignCard 
@@ -60,6 +69,20 @@ function Card({card} : CardProps) {
           >
             Ver detalle
           </Button>
+          <Button 
+            variant='ghost'
+            h='1rem'
+            p='0.8rem 1.5rem'
+            my='0.5rem'
+            onClick={()=> openModalShare(card ? card?.id : 0)}
+          >
+            Compartir
+          </Button>
+          <ShareModal 
+            setIsModalOpen={setIsModalOpen}
+            shareURL={ShareUrl}
+            isOpen={isModalOpen}
+          />
         </ButtonGroup>
       </CardFooter>
     </DesignCard>

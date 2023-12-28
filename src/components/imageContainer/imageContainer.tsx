@@ -37,6 +37,7 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
           <Tooltip label='Expandir imagen'>
             <IconButton
               aria-label='Expandir imagen'
+              color={"white"}
               rounded={"full"}
               position={'absolute'}
               bottom='1rem'
