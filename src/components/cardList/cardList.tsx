@@ -25,7 +25,11 @@ function CardList ({cards}: CardListProps) {
 
   return (
     <Center>
-      <Grid templateColumns={columns}>
+      <Grid 
+        templateColumns={columns}
+        gap='2rem'
+        m='2rem'
+      >
         {
           cards?.map((card) => (
             <Card card={card} key={card.id}/>
