@@ -35,12 +35,14 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
               style={{ cursor: 'pointer' }} // Add this line
           />
           <Tooltip label='Expandir imagen'>
-            <IconButton aria-label='Expandir imagen' 
+            <IconButton
+              aria-label='Expandir imagen'
+              rounded={"full"}
               position={'absolute'}
               bottom='1rem'
               right='1rem'
               icon={<BsArrowsFullscreen />}
-              onClick={()=> setIsModalOpen(true)} 
+              onClick={()=> setIsModalOpen(true)}
               variant={"solid"}
               background={"blackAlpha.700"}
             />
