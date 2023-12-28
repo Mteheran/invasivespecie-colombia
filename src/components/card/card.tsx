@@ -4,7 +4,6 @@ import {
   Card as DesignCard,
   CardBody,
   CardFooter,
-  Stack,
   Heading,
   Text,
   Divider,
@@ -39,28 +38,24 @@ function Card({card} : CardProps) {
 
   return (
     <DesignCard 
-      maxW='sm' 
-      alignItems="center" 
-      boxShadow="0px 0px 5px rgba(0, 0, 0, 0.25)" 
-      borderRadius="lg" 
-      m="1rem"
+      maxW='sm'
+      alignItems="center"
       overflow={'hidden'}
+      variant='elevated'
     >
       <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name}/>
       <CardBody width={'100%'} p='10px'>
-        <Stack spacing='1'>
-          <Heading size='md'>{card?.name}</Heading>
-          <Text color='blue.600'>
-            {card?.scientificName}
-          </Text>
-        </Stack>
+        <Heading size='md'> {card?.name} </Heading>
+        <Text color='blue.600'> {card?.scientificName} </Text>
       </CardBody>
       <Divider borderColor="gray.300"/>
-      <CardFooter width={'100%'} py='5px' display='flex' alignContent='center' justifyContent='center'>
-        <ButtonGroup>
+      <CardFooter p="0">
+        <ButtonGroup spacing='1.5rem'>
           <Button 
-            variant='ghost' 
-            colorScheme='blue'
+            variant='ghost'
+            h='1rem'
+            p='0.8rem 1.5rem'
+            my='0.5rem'
             onClick={()=> openModalDetails(card ? card?.id : 0)}
           >
             Ver detalle
