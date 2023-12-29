@@ -32,7 +32,7 @@ const SearchBar: FC<SearchComponentProps> = ({ value }) => {
       <InputLeftElement pointerEvents='none'>
         <SearchIcon color='gray.300' />
       </InputLeftElement>
-      <Input type='text' placeholder='Buscar' value={search} onChange={handleInputChange}/>
+      <Input type='text' placeholder='Buscar' value={search} onChange={handleInputChange} bg='purple.500'/>
     </InputGroup>
   );
 }

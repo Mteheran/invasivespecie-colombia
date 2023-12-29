@@ -22,20 +22,13 @@ const Button = defineStyleConfig({
   },
 
   variants: {
-    outline: {
-      border: '2px solid',
-      borderColor: 'purple.500',
-      color: 'purple.500',
-    },
-    solid: {
-      bg: 'purple.500',
-      color: 'white',
+    ghost: {
+      bg: 'gray.100',
     },
   },
 
   defaultProps: {
     size: 'md',
-    variant: 'outline',
   },
 });
 
