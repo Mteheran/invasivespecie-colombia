@@ -1,11 +1,9 @@
-import { Skeleton, Image, IconButton, 
-  Flex, Box, Tooltip  } from "@chakra-ui/react";
-import { useState } from "react";
+import { Skeleton, Image, IconButton, Tooltip  } from "@chakra-ui/react";
+import { FC, useState } from "react";
 import ImageModal from "../imageModal";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { BsArrowsFullscreen } from "react-icons/bs";
 
-function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
-  const { imgURL, imgAlt } = props;
+const ImageContainer: FC<{ imgURL?: string, imgAlt?: string }> = ({ imgURL, imgAlt }) => {
 
   const [imageReady, setImageReady] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -13,42 +11,49 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
   const handleLoad = () => {
     setTimeout(() => {
       setImageReady(true);
-    }, 2000);
+    }, 200);
   }
 
   return (
     <>
       <Skeleton
-            boxSize='300px'
-            borderRadius='lg'
             isLoaded={imageReady}
+            minWidth='100%'
+            aspectRatio={4/3}
+            style={{overflow: 'hidden'}}
+            position={'relative'}
         >
-          <Flex color='white'>
-          <Box>
           <Image
-              boxSize='300px'
               objectFit='cover'
-              src={imgURL? imgURL : ""}
-              alt={imgAlt? imgAlt : ""}
-              borderRadius='lg'
+              src={imgURL ?? ""}
+              alt={imgAlt ?? ""}
               onLoad={handleLoad}
-              onClick={() => {
-                console.log("image clicked");
-                setIsModalOpen(true);
-              }}
+              onClick={() => { setIsModalOpen(true); }}
+              width="100%"
+              height="100%"
+              style={{ cursor: 'pointer', borderRadius: '15px 15px 0 0' }}
           />
-          </Box>
-          <Box>
           <Tooltip label='Expandir imagen'>
-            <IconButton aria-label='Expandir imagen' 
-            marginLeft={2}
-            icon={<ExternalLinkIcon />}
-            onClick={()=> setIsModalOpen(true)} />
+            <IconButton
+              aria-label='Expandir imagen'
+              color={"white"}
+              rounded={"full"}
+              position={'absolute'}
+              bottom='1rem'
+              right='1rem'
+              icon={<BsArrowsFullscreen />}
+              onClick={()=> setIsModalOpen(true)}
+              variant={"solid"}
+              background={"blackAlpha.700"}
+              sx={{
+                '&:hover': {
+                  background:'#b8c1ac'
+                }}
+              }
+            />
           </Tooltip>
-          </Box>
-          </Flex>
         </Skeleton>
-        <ImageModal isOpen={isModalOpen} url={imgURL ? imgURL : ""} setIsModalOpen={setIsModalOpen}/>
+        <ImageModal isOpen={isModalOpen} url={imgURL ?? ""} setIsModalOpen={setIsModalOpen}/>
     </>
   );
 }

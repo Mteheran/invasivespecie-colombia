@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { useSearchParams } from "react-router-dom";
 import Searcher from '../../templates/searcher';
 import { SearcherContext, declaration } from "../../context";
 import fetchInvasiveSpecie, { fetchAllInvasiveSpecies, IInvasiveSpecie } from "../../services/invasiveSpecie";
-import {Container} from "@chakra-ui/react";
 
 function Main() {
   const [params] = useSearchParams();
@@ -13,17 +12,23 @@ function Main() {
   const [specie, setSpecie] = useState<IInvasiveSpecie>(declaration.itemDetail);
   const [listOfInvasiveSpecies, setListOfInvasiveSpecies] = useState<IInvasiveSpecie[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (id) {
+      setIsLoading(true);
       fetchInvasiveSpecie(id)
         .then(data => {
           if (data) {
             setIsModalOpen(true);
             setSpecie(data);
+            setIsLoading(false);
           }
         })
-        .catch(error => console.error(error));
+        .catch(error => {
+          setIsLoading(false);
+          console.error(error)
+        });
     } else {
       setIsModalOpen(false);
       setSpecie(declaration.itemDetail);
@@ -32,26 +37,34 @@ function Main() {
 
   useEffect(() => {
     if (search) {
+      setIsLoading(true);
       fetchAllInvasiveSpecies(search)
-        .then(data => setListOfInvasiveSpecies(data))
-        .catch(error => console.error(error));
+        .then(data => {
+          setIsLoading(false);
+          setListOfInvasiveSpecies(data)
+        })
+        .catch(error => {
+          setIsLoading(false);
+          console.error(error)
+        });
     }
     else {
       setListOfInvasiveSpecies([]);
     }
   }, [search]);
 
+  const provider = useMemo(() => ({
+    itemDetail: specie,
+    itemList: listOfInvasiveSpecies,
+    isModalOpen,
+    searchValue: search ?? '',
+    setIsModalOpen: setIsModalOpen,
+    isLoading
+  }), [specie, listOfInvasiveSpecies, isModalOpen, search, isLoading]);
+
   return (
-    <SearcherContext.Provider value={{
-      itemDetail: specie,
-      itemList: listOfInvasiveSpecies,
-      isModalOpen,
-      searchValue: search ?? '',
-      setIsModalOpen: setIsModalOpen
-    }}>
-      <Container>
+    <SearcherContext.Provider value={provider}>
         <Searcher />
-      </Container>
     </SearcherContext.Provider>
   );
 }

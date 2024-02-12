@@ -1,6 +1,6 @@
 import { useState, FC, useEffect, ChangeEvent } from "react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
+import { Input, InputGroup, InputRightElement } from "@chakra-ui/react";
 import { useDebounce } from "../../utils/functions";
 import { useNavigate } from "react-router-dom";
 
@@ -29,10 +29,10 @@ const SearchBar: FC<SearchComponentProps> = ({ value }) => {
 
   return (
     <InputGroup>
-      <InputLeftElement pointerEvents='none'>
-        <SearchIcon color='gray.300' />
-      </InputLeftElement>
-      <Input type='text' placeholder='Buscar' value={search} onChange={handleInputChange}/>
+      <Input type='text' placeholder='Buscar' size='lg' value={search} onChange={handleInputChange} bg='white' color="black" borderRadius="20px"/>
+      <InputRightElement pointerEvents='none'>
+        <SearchIcon color="black" width="25px" mt="10px" mr="10px" />
+      </InputRightElement>
     </InputGroup>
   );
 }
