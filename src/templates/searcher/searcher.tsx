@@ -59,7 +59,7 @@ function Searcher() {
         <Center bg={`url(${background})`} py='50px' mt="50px" borderRadius='25px' boxShadow="0px 4px 11px 1px gray" color='white' px={isSmallWindow ?'10%':'none'} width='50%' mx='auto'>
           <Flex direction='column'>
             <Center>
-            <Heading size='lg'>Especies Invasoras</Heading>
+            <Heading size='lg'>Especies Invasoras de Colombia</Heading>
             </Center>
             <Text pb='1rem'>Visualizador de especies invasoras en Colombia potenciado por{' '}
               <Link href='https://api-colombia.com' isExternal textDecoration="underline">
