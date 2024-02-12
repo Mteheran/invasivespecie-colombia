@@ -82,7 +82,6 @@ function InvasiveSpecieModal(props: Props) {
       <ModalContent 
           zIndex={9999}
           height="100%"
-          width="100%"
           bg='transparent'
           boxShadow='none'
           onClick={() => setIsModalOpen(false)}

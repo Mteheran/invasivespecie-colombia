@@ -7,7 +7,7 @@ interface CardListProps {
   cards: IInvasiveSpecie[]
 }
 
-function CardList ({cards}: CardListProps) {
+const CardList: React.FC<CardListProps> = ({cards}) => {
   const [mediumWindow] = useMediaQuery("(min-width: 800px)");
   const [largeWindow] = useMediaQuery("(min-width: 1100px)");
 

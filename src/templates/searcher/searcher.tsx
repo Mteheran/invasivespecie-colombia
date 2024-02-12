@@ -6,6 +6,7 @@ import { SearcherContext } from "../../context";
 import InvasiveSpecieModal from "../../components/detailModal";
 import {ExternalLinkIcon} from "@chakra-ui/icons";
 import {useEffect, useState} from "react";
+import background from "../../utils/images/background.jpg";
 
 
 function Searcher() {
@@ -46,19 +47,19 @@ function Searcher() {
             <Center display={isSmallWindow? 'none':'flex'}>
                 <Heading size='md'>{"Especies Invasoras - API Colombia"}</Heading>
             </Center>
-            <Center display={isSmallWindow? 'flex':'none'} flexDirection={'column'} mb='0.5rem'>
-                <Heading size='md'>{"Especies Invasoras"}</Heading>
-                <Heading size='sm'>{"API Colombia"}</Heading>
+            <Center display={isSmallWindow? 'flex':'none'} flexDirection='column' mb='0.5rem'>
+                <Heading size='md'>Especies Invasoras</Heading>
+                <Heading size='sm'>API Colombia</Heading>
             </Center>
             <Spacer />
             <Center w={isSmallWindow? '100%':'60%'}>
               <SearchBar value={context.searchValue}/>
             </Center>
         </Flex>
-        <Center bg='purple.500' py='50px' color='white' px={isSmallWindow?'10%':'none'}>
+        <Center bg={`url(${background})`} py='50px' mt="50px" borderRadius='25px' boxShadow="0px 4px 11px 1px gray" color='white' px={isSmallWindow ?'10%':'none'} width='50%' mx='auto'>
           <Flex direction='column'>
             <Center>
-            <Heading size='lg'>{"Especies Invasoras"}</Heading>
+            <Heading size='lg'>Especies Invasoras</Heading>
             </Center>
             <Text pb='1rem'>Visualizador de especies invasoras en Colombia potenciado por{' '}
               <Link href='https://api-colombia.com' isExternal textDecoration="underline">
@@ -69,15 +70,16 @@ function Searcher() {
               as="header" 
               py='10px' 
               px='15%'
-              bg='purple.500'
             >
               <SearchBar value={context.searchValue}/>
             </Box>
           </Flex>
         </Center>
         <CardList cards={context.itemList}/>
-        <InvasiveSpecieModal isOpen={context.isModalOpen} data={context.itemDetail}
-                             setIsModalOpen={context.setIsModalOpen}></InvasiveSpecieModal>
+        <InvasiveSpecieModal 
+          isOpen={context.isModalOpen} 
+          data={context.itemDetail}
+          setIsModalOpen={context.setIsModalOpen}></InvasiveSpecieModal>
       </>
 
   );

@@ -1,10 +1,9 @@
 import { Skeleton, Image, IconButton, Tooltip  } from "@chakra-ui/react";
-import { useState } from "react";
+import { FC, useState } from "react";
 import ImageModal from "../imageModal";
 import { BsArrowsFullscreen } from "react-icons/bs";
 
-function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
-  const { imgURL, imgAlt } = props;
+const ImageContainer: FC<{ imgURL?: string, imgAlt?: string }> = ({ imgURL, imgAlt }) => {
 
   const [imageReady, setImageReady] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,13 +25,13 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
         >
           <Image
               objectFit='cover'
-              src={imgURL? imgURL : ""}
-              alt={imgAlt? imgAlt : ""}
+              src={imgURL ?? ""}
+              alt={imgAlt ?? ""}
               onLoad={handleLoad}
               onClick={() => { setIsModalOpen(true); }}
               width="100%"
               height="100%"
-              style={{ cursor: 'pointer' }} // Add this line
+              style={{ cursor: 'pointer', borderRadius: '15px 15px 0 0' }}
           />
           <Tooltip label='Expandir imagen'>
             <IconButton
@@ -46,10 +45,15 @@ function ImageContainer(props: { imgURL?: string, imgAlt?: string }) {
               onClick={()=> setIsModalOpen(true)}
               variant={"solid"}
               background={"blackAlpha.700"}
+              sx={{
+                '&:hover': {
+                  background:'#b8c1ac'
+                }}
+              }
             />
           </Tooltip>
         </Skeleton>
-        <ImageModal isOpen={isModalOpen} url={imgURL ? imgURL : ""} setIsModalOpen={setIsModalOpen}/>
+        <ImageModal isOpen={isModalOpen} url={imgURL ?? ""} setIsModalOpen={setIsModalOpen}/>
     </>
   );
 }
