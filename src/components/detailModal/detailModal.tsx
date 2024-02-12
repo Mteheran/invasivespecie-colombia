@@ -1,4 +1,4 @@
-import { Button, Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, 
+import { Button, Modal, ModalOverlay, ModalContent, ModalBody, 
   ModalCloseButton, Badge, Spinner, Text, Box } from "@chakra-ui/react";
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
 import ImageContainer from "../imageContainer";
