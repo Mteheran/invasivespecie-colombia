@@ -25,6 +25,16 @@ const Button = defineStyleConfig({
     ghost: {
       bg: 'gray.100',
     },
+    default: {
+      bg: '#6d7862',
+      h: '1rem',
+      p: '1.5rem 1.5rem',
+      my: '0.5rem',
+      color: '#feeee4',
+      '&:hover': {
+        background:'#b8c1ac'
+      }
+    }
   },
 
   defaultProps: {

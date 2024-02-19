@@ -21,14 +21,14 @@ const ImageContainer: FC<{ imgURL?: string, imgAlt?: string }> = ({ imgURL, imgA
             minWidth='100%'
             aspectRatio={4/3}
             style={{overflow: 'hidden'}}
-            position={'relative'}
+            position='relative'
         >
           <Image
               objectFit='cover'
               src={imgURL ?? ""}
               alt={imgAlt ?? ""}
               onLoad={handleLoad}
-              onClick={() => { setIsModalOpen(true); }}
+              onClick={() => { setIsModalOpen(true) }}
               width="100%"
               height="100%"
               style={{ cursor: 'pointer', borderRadius: '15px 15px 0 0' }}
@@ -36,15 +36,15 @@ const ImageContainer: FC<{ imgURL?: string, imgAlt?: string }> = ({ imgURL, imgA
           <Tooltip label='Expandir imagen'>
             <IconButton
               aria-label='Expandir imagen'
-              color={"white"}
-              rounded={"full"}
-              position={'absolute'}
+              color="white"
+              rounded="full"
+              position='absolute'
               bottom='1rem'
               right='1rem'
               icon={<BsArrowsFullscreen />}
               onClick={()=> setIsModalOpen(true)}
-              variant={"solid"}
-              background={"blackAlpha.700"}
+              variant="solid"
+              background="blackAlpha.700"
               sx={{
                 '&:hover': {
                   background:'#b8c1ac'

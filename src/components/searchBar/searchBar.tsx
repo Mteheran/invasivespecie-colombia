@@ -28,7 +28,7 @@ const SearchBar: FC<SearchComponentProps> = ({ value }) => {
   };
 
   return (
-    <InputGroup>
+    <InputGroup minWidth='250px'>
       <Input type='text' placeholder='Buscar' size='lg' value={search} onChange={handleInputChange} bg='white' color="black" borderRadius="20px"/>
       <InputRightElement pointerEvents='none'>
         <SearchIcon color="black" width="25px" mt="10px" mr="10px" />

@@ -1,7 +1,7 @@
 import * as React from "react";
 import SearchBar from "../../components/searchBar";
 import CardList from "../../components/cardList";
-import {Box, Center, Flex, Heading, Link, Spacer, Text, useMediaQuery} from "@chakra-ui/react";
+import {Box, Center, Flex, Grid, Heading, Link, Skeleton, Spacer, Text, useMediaQuery} from "@chakra-ui/react";
 import { SearcherContext } from "../../context";
 import InvasiveSpecieModal from "../../components/detailModal";
 import {ExternalLinkIcon} from "@chakra-ui/icons";
@@ -13,6 +13,8 @@ function Searcher() {
   const context = React.useContext(SearcherContext);
   
   const [isSmallWindow] = useMediaQuery("(max-width: 800px)");
+  const [mediumWindow] = useMediaQuery("(min-width: 800px)");
+  const [largeWindow] = useMediaQuery("(min-width: 1100px)");
 
   const [showSearchBar, setShowSearchBar] = useState(false);
 
@@ -28,6 +30,14 @@ function Searcher() {
     };
   }, []);
 
+  let columns = '1fr';
+  if (largeWindow) {
+    columns = 'repeat(3, 1fr)';
+  }
+  else if (mediumWindow) {
+    columns = 'repeat(2, 1fr)';
+  }
+
   return (
       <>
         <Flex
@@ -35,7 +45,7 @@ function Searcher() {
             as="header"
             py='10px' 
             px='10%'
-            bg='purple.500'
+            bg={`url(${background})`}
             color='white'
             position='fixed'
             top='0'
@@ -56,7 +66,7 @@ function Searcher() {
               <SearchBar value={context.searchValue}/>
             </Center>
         </Flex>
-        <Center bg={`url(${background})`} py='50px' mt="50px" borderRadius='25px' boxShadow="0px 4px 11px 1px gray" color='white' px={isSmallWindow ?'10%':'none'} width='50%' mx='auto'>
+        <Center bg={`url(${background})`} py='50px' mt="50px" borderRadius='25px' boxShadow="0px 4px 11px 1px gray" color='white' px={isSmallWindow ?'15px':'none'} width={{sm: '100%', md: '50%'}} mx='auto'>
           <Flex direction='column'>
             <Center>
             <Heading size='lg'>Especies Invasoras de Colombia</Heading>
@@ -75,7 +85,23 @@ function Searcher() {
             </Box>
           </Flex>
         </Center>
-        <CardList cards={context.itemList}/>
+        {context.isLoading && 
+          <Center>
+            <Grid 
+              templateColumns={columns}
+              gap='2rem'
+              m='2rem'
+            >
+              <Skeleton width='sm' height='490px' mt='32px'/>
+              <Skeleton width='sm' height='490px' mt='32px'/>
+              <Skeleton width='sm' height='490px' mt='32px'/>
+              <Skeleton width='sm' height='490px' mt='32px'/>
+              <Skeleton width='sm' height='490px' mt='32px'/>
+              <Skeleton width='sm' height='490px' mt='32px'/>
+            </Grid>
+          </Center>
+        }
+        {!context.isLoading && <CardList cards={context.itemList}/>}
         <InvasiveSpecieModal 
           isOpen={context.isModalOpen} 
           data={context.itemDetail}

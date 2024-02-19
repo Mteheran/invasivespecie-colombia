@@ -3,7 +3,6 @@ import {
   Button,
   Card as DesignCard,
   CardBody,
-  CardFooter,
   Heading,
   Text,
   ButtonGroup
@@ -45,51 +44,28 @@ const Card: FC<CardProps> = ({card}) => {
   const ShareUrl = (new URL(document.URL).origin) + "/?id=" + card?.id;
 
   return (
-    <DesignCard 
+    <DesignCard
       maxW='sm'
       alignItems="center"
-      overflow={'hidden'}
-      variant='elevated'
+      overflow='hidden'
       boxShadow="0px 4px 11px 1px gray"
       padding="15px"
       borderRadius="25px"
       bg='linear-gradient(144deg, #b8c1ac, #47533d)' 
     >
       <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name} />
-      <CardBody width='100%' p='10px' bg='#feeee4' mt='20px'>
+      <CardBody width='100%' p='10px' bg='#feeee4' mt='20px' borderBottomRadius='15px'>
         <Heading size='md' fontSize='28px' color='#1e2017' textAlign='center' fontFamily='cursive' fontWeight='800' mb="5px"> {card?.name} </Heading>
         <Text color='#1e2017' fontSize='14px' fontFamily='roboto' textAlign='center' fontWeight='600'> {card?.scientificName} </Text>
-      </CardBody>
-      <CardFooter px='16.5px' bg='#feeee4' borderBottomRadius='15px'>
-        <ButtonGroup spacing='1.5rem' borderTop='solid 1px #1e2017' pt='15px'>
+        <ButtonGroup spacing='1.5rem' borderTop='solid 1px #1e2017' pt='15px' mt='15px'>
           <Button 
-            variant='ghost'
-            bg='#6d7862'
-            h='1rem'
-            p='1.5rem 1.5rem'
-            my='0.5rem'
-            color='#feeee4'
-            sx={{
-              '&:hover': {
-                background:'#b8c1ac'
-              }}
-            }
+            variant='default'
             onClick={()=> openModalDetails(card ? card?.id : 0)}
           >
             Ver detalle
           </Button>
           <Button 
-            variant='ghost'
-            bg='#6d7862'
-            h='1rem'
-            p='1.5rem 1.5rem'
-            my='0.5rem'
-            color='#feeee4'
-            sx={{
-              '&:hover': {
-                background:'#b8c1ac'
-              }}
-            }
+            variant='default'
             onClick={()=> openModalShare(card ? card?.id : 0)}
           >
             Compartir
@@ -100,7 +76,7 @@ const Card: FC<CardProps> = ({card}) => {
             isOpen={isModalOpen}
           />
         </ButtonGroup>
-      </CardFooter>
+      </CardBody>
     </DesignCard>
   );
 }
