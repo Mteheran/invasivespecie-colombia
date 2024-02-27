@@ -16,17 +16,14 @@ function Main() {
 
   useEffect(() => {
     if (id) {
-      setIsLoading(true);
       fetchInvasiveSpecie(id)
         .then(data => {
           if (data) {
             setIsModalOpen(true);
             setSpecie(data);
-            setIsLoading(false);
           }
         })
         .catch(error => {
-          setIsLoading(false);
           console.error(error)
         });
     } else {
@@ -59,7 +56,7 @@ function Main() {
     isModalOpen,
     searchValue: search ?? '',
     setIsModalOpen: setIsModalOpen,
-    isLoading
+    isLoading: isLoading
   }), [specie, listOfInvasiveSpecies, isModalOpen, search, isLoading]);
 
   return (

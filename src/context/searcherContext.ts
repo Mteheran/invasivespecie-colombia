@@ -6,7 +6,8 @@ interface ISearcherContext {
   itemList: IInvasiveSpecie[];
   isModalOpen: boolean;
   searchValue: string;
-  setIsModalOpen: any;
+  setIsModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
 }
 
 export const declaration = {
@@ -23,7 +24,8 @@ export const declaration = {
   itemList: [],
   isModalOpen: false,
   searchValue: '',
-  setIsModalOpen: () => {}
+  setIsModalOpen: () => {},
+  isLoading: false
 } 
 
 const SearcherContext = createContext<ISearcherContext>(declaration);
