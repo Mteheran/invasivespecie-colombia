@@ -10,13 +10,20 @@ interface Props {
   setIsModalOpen: any
 }
 
+enum RiskLevel {
+  LOW = 0,
+  MEDIUM = 1,
+  HIGH = 2,
+
+}
+
 const GetRiskLevelLabel = (riskLevel: number)=> {
   switch (riskLevel) {
-    case 0:
+    case RiskLevel.LOW:
       return <Badge width='fit-content'>Riesgo Bajo</Badge>
-    case 1:
+    case RiskLevel.MEDIUM:
       return <Badge colorScheme='orange' width='fit-content'>Riesgo Medio</Badge>
-    case 2:
+    case RiskLevel.HIGH:
       return <Badge colorScheme='red' width='fit-content'>Riesgo Alto</Badge>
     default:
       return "";
@@ -60,10 +67,10 @@ function InvasiveSpecieModal(props: Props) {
                 <Heading as='h2' fontSize='22px' fontFamily='sans-serif'>Impacto</Heading>
                 <Text fontFamily='serif'>{data.impact}</Text>
               </Box>
-              <Box width='100%' mb='15px' pb='8px'>
+              {data.manage && <Box width='100%' mb='15px' pb='8px'>
                 <Heading as='h2' fontSize='22px' fontFamily='sans-serif'>Manejo</Heading>
                 <Text fontFamily='serif'>{data.manage}</Text>
-            </Box>
+            </Box>}
             </Box>
             <ShareModal setIsModalOpen={setIsShareModalOpen} isOpen={isShareModalOpen} shareURL={shareUrl}/>
           </Box>
