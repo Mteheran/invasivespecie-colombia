@@ -65,7 +65,8 @@ function InvasiveSpecieModal(props: Props) {
                 <Text fontFamily='serif'>{data.manage}</Text>
             </Box>
             </Box>
-            <ShareModal setIsModalOpen={setIsShareModalOpen} isOpen={isShareModalOpen} shareURL={shareUrl}/>
+            {/** TODO: Change ShareModal into context component for avoiding component re-rendering */}
+            <ShareModal speciesName={data.name} setIsModalOpen={setIsShareModalOpen} isOpen={isShareModalOpen} shareURL={shareUrl}/>
           </Box>
         </ModalBody>
       </ModalContent>
