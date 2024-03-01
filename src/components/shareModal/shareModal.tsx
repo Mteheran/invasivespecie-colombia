@@ -13,15 +13,21 @@ import {
   HStack,
   Input,
 } from "@chakra-ui/react";
+import { useMemo } from "react";
 
 interface Props {
   isOpen: boolean;
   shareURL: string;
-  setIsModalOpen: any
+  setIsModalOpen: any,
+  speciesName: string | undefined;
 }
 
 function ShareModal(props: Props){
-    const { isOpen, shareURL, setIsModalOpen } = props;
+    const { isOpen, shareURL, setIsModalOpen, speciesName } = props;
+    
+    const textToShare = useMemo(() => {
+        return `Mira a la especie invasora ${speciesName} en: ${shareURL}`;
+    }, [shareURL, speciesName])
 
     function isMobileDevice() {
         return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
@@ -48,7 +54,7 @@ function ShareModal(props: Props){
                         colorScheme="whatsapp"
                         variant={"solid"}
                         icon={<FaWhatsapp size={30}/> }
-                        onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(shareURL)}`, '_blank')}
+                        onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(textToShare)}`, '_blank')}
                     />
                     <IconButton 
                         size={"lg"}
@@ -66,14 +72,14 @@ function ShareModal(props: Props){
                         colorScheme="gray"
                         variant={"solid"}
                         icon={<FaXTwitter  size={30}/>}
-                        onClick={() => window.open(`https://twitter.com/share?url=${encodeURIComponent(shareURL)}`, '_blank')}
+                        onClick={() => window.open(`https://twitter.com/share?url=${encodeURIComponent(textToShare)}`, '_blank')}
                     />
                 </ButtonGroup>
             </Center>
             <Center m={"1rem"}>
                 <HStack spacing={4} width="100%">
-                    <Input value={shareURL} isReadOnly/>
-                    {!isMobileDevice() && <Button onClick={async () => await navigator.clipboard.writeText(shareURL)}>Copy</Button>}
+                    <Input value={textToShare} isReadOnly/>
+                    {!isMobileDevice() && <Button onClick={async () => await navigator.clipboard.writeText(textToShare)}>Copy</Button>}
                 </HStack>
             </Center>
           </ModalBody>
