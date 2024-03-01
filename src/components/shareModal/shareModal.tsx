@@ -1,4 +1,4 @@
-import { FaWhatsapp, FaFacebookF, FaXTwitter } from "react-icons/fa6";
+import { FaWhatsapp, FaFacebookF, FaXTwitter, FaLinkedinIn } from "react-icons/fa6";
 import {
   Modal,
   ModalOverlay,
@@ -73,6 +73,15 @@ function ShareModal(props: Props){
                         variant={"solid"}
                         icon={<FaXTwitter  size={30}/>}
                         onClick={() => window.open(`https://twitter.com/share?url=${encodeURIComponent(textToShare)}`, '_blank')}
+                    />
+                    <IconButton 
+                        size={"lg"}
+                        isRound={true} 
+                        aria-label='Share in linkedin' 
+                        colorScheme="blue"
+                        variant={"solid"}
+                        icon={<FaLinkedinIn  size={30}/>}
+                        onClick={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareURL)}"`, '_blank')}
                     />
                 </ButtonGroup>
             </Center>
