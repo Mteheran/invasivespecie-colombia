@@ -5,19 +5,10 @@ import {Center, Grid, useMediaQuery} from "@chakra-ui/react";
 
 interface CardListProps {
   cards: IInvasiveSpecie[]
+  columns: string
 }
 
-const CardList: React.FC<CardListProps> = ({cards}) => {
-  const [mediumWindow] = useMediaQuery("(min-width: 800px)");
-  const [largeWindow] = useMediaQuery("(min-width: 1100px)");
-
-  let columns = '1fr';
-  if (largeWindow) {
-    columns = 'repeat(3, 1fr)';
-  }
-  else if (mediumWindow) {
-    columns = 'repeat(2, 1fr)';
-  }
+const CardList: React.FC<CardListProps> = ({cards, columns}) => {
 
   if (!cards || cards.length === 0) {
     return null;
