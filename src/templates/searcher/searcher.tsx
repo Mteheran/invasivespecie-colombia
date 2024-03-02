@@ -85,6 +85,7 @@ function Searcher() {
             </Box>
           </Flex>
         </Center>
+        {context.itemList && <CardList cards={context.itemList} columns={columns}/>}
         {context.isLoading && 
           <Center>
             <Grid 
@@ -101,7 +102,6 @@ function Searcher() {
             </Grid>
           </Center>
         }
-        {!context.isLoading && <CardList cards={context.itemList} columns={columns}/>}
         <InvasiveSpecieModal 
           isOpen={context.isModalOpen} 
           data={context.itemDetail}
