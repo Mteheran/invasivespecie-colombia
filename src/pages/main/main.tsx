@@ -11,6 +11,7 @@ function Main() {
 
   const [specie, setSpecie] = useState<IInvasiveSpecie>(declaration.itemDetail);
   const [listOfInvasiveSpecies, setListOfInvasiveSpecies] = useState<IInvasiveSpecie[]>([]);
+  const [cardsLeft, setCardsLeft] = useState<IInvasiveSpecie[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
@@ -43,7 +44,8 @@ function Main() {
       fetchAllInvasiveSpecies(search)
         .then(data => {
           setIsLoading(false);
-          setListOfInvasiveSpecies(data)
+          setListOfInvasiveSpecies(data.splice(0, pageSize))
+          setCardsLeft(data.splice(pageSize));
           setPagesLeft(0);
         })
         .catch(error => {
@@ -85,7 +87,7 @@ function Main() {
         observer.unobserve(observerTarget.current);
       }
     };
-  }, [pagesLeft]);
+  }, [pagesLeft, cardsLeft]);
 
   function loadMoreCards(){
     if (pagesLeft > 0) {
@@ -101,6 +103,10 @@ function Main() {
           setIsLoading(false);
           console.error(error);
         });
+    }
+    if (cardsLeft.length > 0) {
+      setListOfInvasiveSpecies([...listOfInvasiveSpecies, ...cardsLeft.splice(0, pageSize)]);
+      setCardsLeft(cardsLeft.splice(pageSize));
     }
   }
 
