@@ -73,42 +73,40 @@ function Main() {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          loadMoreCards();
+          if (pagesLeft > 0) {
+            setIsLoading(true);
+            getAllInvasiveSpecies(pageSize, currentPage + 1)
+              .then(data => {
+                setListOfInvasiveSpecies([...listOfInvasiveSpecies, ...data['data']]);
+                setCurrentPage(data['page']);
+                setPagesLeft(data['pageCount'] - data['page']);
+                setIsLoading(false);
+              })
+              .catch(error => {
+                setIsLoading(false);
+                console.error(error);
+              });
+          }
+          if (cardsLeft.length > 0) {
+            setListOfInvasiveSpecies([...listOfInvasiveSpecies, ...cardsLeft.splice(0, pageSize)]);
+            setCardsLeft(cardsLeft.splice(pageSize));
+          }
         }
       });
     });
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
+    const currentTarget = observerTarget.current;
+  
+    if (currentTarget) {
+      observer.observe(currentTarget);
     }
-
+  
     return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
+      if (currentTarget) {
+        observer.unobserve(currentTarget);
       }
     };
-  }, [pagesLeft, cardsLeft]);
-
-  function loadMoreCards(){
-    if (pagesLeft > 0) {
-      setIsLoading(true);
-      getAllInvasiveSpecies(pageSize, currentPage + 1)
-        .then(data => {
-          setListOfInvasiveSpecies([...listOfInvasiveSpecies, ...data['data']]);
-          setCurrentPage(data['page']);
-          setPagesLeft(data['pageCount'] - data['page']);
-          setIsLoading(false);
-        })
-        .catch(error => {
-          setIsLoading(false);
-          console.error(error);
-        });
-    }
-    if (cardsLeft.length > 0) {
-      setListOfInvasiveSpecies([...listOfInvasiveSpecies, ...cardsLeft.splice(0, pageSize)]);
-      setCardsLeft(cardsLeft.splice(pageSize));
-    }
-  }
+  }, [pagesLeft, cardsLeft, currentPage, listOfInvasiveSpecies]);
 
   const provider = useMemo(() => ({
     itemDetail: specie,
