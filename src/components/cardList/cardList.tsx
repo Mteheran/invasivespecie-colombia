@@ -1,7 +1,7 @@
 import * as React from "react";
 import Card from "../card";
 import { IInvasiveSpecie } from "../../services/invasiveSpecie";
-import {Center, Grid, useMediaQuery} from "@chakra-ui/react";
+import {Center, Grid } from "@chakra-ui/react";
 
 interface CardListProps {
   cards: IInvasiveSpecie[]
