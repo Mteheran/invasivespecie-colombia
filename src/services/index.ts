@@ -1,3 +1,3 @@
-import InvasiveSpecie from "./invasiveSpecie";
+import {fetchInvasiveSpecie} from "./invasiveSpecie";
 
-export { InvasiveSpecie };
+export { fetchInvasiveSpecie };

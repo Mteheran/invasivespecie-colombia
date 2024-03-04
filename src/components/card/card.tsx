@@ -70,10 +70,12 @@ const Card: FC<CardProps> = ({card}) => {
           >
             Compartir
           </Button>
+          {/** TODO: Change ShareModal into context component for avoiding component re-rendering */}
           <ShareModal 
             setIsModalOpen={setIsModalOpen}
             shareURL={ShareUrl}
             isOpen={isModalOpen}
+            speciesName={card?.name}
           />
         </ButtonGroup>
       </CardBody>
