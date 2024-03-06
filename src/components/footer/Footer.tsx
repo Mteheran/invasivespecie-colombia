@@ -1,9 +1,15 @@
-import { ButtonGroup, Flex, IconButton, Stack, Text,
+import { 
+    ButtonGroup,
+    Flex,
+    IconButton,
+    Text,
     HStack,
     VStack,
     Link,
-    LinkProps } from '@chakra-ui/react'
-import { FaGithub } from 'react-icons/fa'
+    LinkProps, 
+    Icon
+} from '@chakra-ui/react'
+import { FaGithub, FaHeart } from 'react-icons/fa'
 
 const CustomLink = ({ children, ...props }: LinkProps) => {
     return (
@@ -22,7 +28,14 @@ export default function Footer () {
           alignItems='center'
         >
           <VStack spacing={4} alignItems="flex-center" color='white'>
-              <CustomLink href={'https://github.com/sponsors/Mteheran'}>Contribuir</CustomLink>
+            <HStack spacing={2} alignItems='center'>
+                <CustomLink href={'https://github.com/sponsors/Mteheran'}>
+                    <HStack spacing={2} alignItems='center'>
+                        <Text>Contribuir</Text>
+                        <Icon color='red' as={FaHeart}></Icon>
+                    </HStack>
+                </CustomLink>
+            </HStack>
           </VStack>
 
           <VStack spacing={4} alignItems="flex-center" color='white'>
