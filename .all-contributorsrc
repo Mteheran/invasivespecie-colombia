@@ -1,0 +1,53 @@
+{
+  "projectName": "invasivespecie-colombia",
+  "projectOwner": "mteheran",
+  "repoType": "github",
+  "repoHost": "",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "none",
+  "contributors": [
+    {
+      "login": "Mteheran",
+      "name": "Miguel Teheran",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3578356?v=4",
+      "profile": "https://mteheran.dev/",
+      "contributions": [
+        "doc",
+        "code"
+      ]
+    },
+    {
+      "login": "JuanRCifuentes",
+      "name": "Juan R. Cifuentes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/42916798?v=4",
+      "profile": "https://github.com/JuanRCifuentes",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "TeckSergio",
+      "name": "TeckSergio",
+      "avatar_url": "https://avatars.githubusercontent.com/u/106503617?v=4",
+      "profile": "https://github.com/TeckSergio",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "MateoLeon44",
+      "name": "MateoLeon44",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30735098?v=4",
+      "profile": "https://github.com/MateoLeon44",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "linkToUsage": true
+}
