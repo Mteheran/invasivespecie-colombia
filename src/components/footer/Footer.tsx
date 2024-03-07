@@ -44,7 +44,9 @@ export default function Footer () {
 
           <VStack spacing={4} alignItems="flex-center" color='white'>
             <ButtonGroup variant="tertiary">
-            <IconButton as="a" href={'https://github.com/Mteheran/invasivespecie-colombia'} aria-label="GitHub" icon={<FaGithub />} />
+            <IconButton as="a" href={'https://github.com/Mteheran/invasivespecie-colombia'}
+                          target='_blank'
+                          aria-label="GitHub" icon={<FaGithub />} />
             </ButtonGroup>
           </VStack>
         </HStack>
