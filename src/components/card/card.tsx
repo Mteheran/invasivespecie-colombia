@@ -54,18 +54,20 @@ const Card: FC<CardProps> = ({card}) => {
       bg='linear-gradient(144deg, #b8c1ac, #47533d)' 
     >
       <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name} />
-      <CardBody width='100%' p='10px' bg='#feeee4' mt='20px' borderBottomRadius='15px'>
+      <CardBody width='100%' p='10px' bg='#feeee4' mt='20px' borderBottomRadius='15px' alignItems='center' display='flex' flexDirection='column'>
         <Heading size='md' fontSize='28px' color='#1e2017' textAlign='center' fontFamily='cursive' fontWeight='800' mb="5px"> {card?.name} </Heading>
         <Text color='#1e2017' fontSize='14px' fontFamily='roboto' textAlign='center' fontWeight='600'> {card?.scientificName} </Text>
-        <ButtonGroup spacing='1.5rem' borderTop='solid 1px #1e2017' pt='15px' mt='15px'>
+        <ButtonGroup spacing='1rem' borderTop='solid 1px #1e2017' pt='15px' mt='15px'>
           <Button 
             variant='default'
+            p={['20px 10px', ]}
             onClick={()=> openModalDetails(card ? card?.id : 0)}
           >
             Ver detalle
           </Button>
           <Button 
             variant='default'
+            p={['20px 10px']}
             onClick={()=> openModalShare(card ? card?.id : 0)}
           >
             Compartir
