@@ -3,27 +3,112 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-En código representa el portal que visualiza las especies invasoras de colombia tanto plantas como animales. 
+Portal web que visualiza las **especies invasoras de Colombia** (plantas y animales). Permite listar las especies, buscarlas y consultar información detallada como su nombre científico, nombres comunes, impacto en el ecosistema y el manejo recomendado para cada una.
 
-Se listan las especies y también se puede consultar algunos datos como nombre cientifico, nombres comunes y el manejo que se le debe dar a la especie.
+Los datos se consumen en tiempo real desde [API Colombia](https://api-colombia.com).
 
-## Objetivo del proyecto
+## 🎯 Objetivo del proyecto
 
-Con este proyecto queremos generar conciencia en las personas sobre cómo se deben manejar las especies invasoras y como estas afectan nuestros ecosistemas nativos. 
+Con este proyecto queremos generar conciencia en las personas sobre cómo se deben manejar las especies invasoras y cómo estas afectan nuestros ecosistemas nativos.
 
-## Tecnologías utilizadas
+## ✨ Características
 
-1. Api (backend): [api-colombia](https://api-colombia.com)
-2. React.js
-3. Chakra UI
-4. TypeScript
-5. Azure
+- 🚦 **Nivel de riesgo como señal principal**: badge de riesgo (alto/medio/bajo) visible en cada tarjeta.
+- 🧭 **Filtros y orden** por categoría (animal/planta), hábitat y riesgo, con el estado reflejado en la URL (compartible).
+- 📋 Listado con carga progresiva (scroll infinito) y búsqueda por nombre con _debounce_.
+- 🪪 **Ficha de especie como página propia** (`/especie/:id`): nivel de riesgo, nombres comunes, impacto, manejo, «cómo llegó», ficha rápida y mini-mapa.
+- 🗺️ **Mapa de distribución** de Colombia (geometría real de Natural Earth con d3-geo + topojson), con leyenda-filtro por riesgo.
+- 🆘 Bloque **«Si la encuentras»** con pasos concretos y flujo de reporte.
+- 🌐 **Bilingüe ES/EN** (la interfaz se traduce; el contenido de la API se mantiene en español).
+- 🖼️ Visor de imágenes a pantalla completa y compartir en WhatsApp, Facebook, X y LinkedIn.
+- 📱 Diseño responsive (móvil, tablet y escritorio) y respeto por `prefers-reduced-motion`.
 
+> ⚠️ **Datos de ejemplo:** la API de API Colombia solo expone `id, name, scientificName, commonNames, impact, manage, riskLevel, urlImage`. La categoría, el hábitat, el origen y las ubicaciones del mapa provienen de una tabla local de ejemplo (`src/data/`) marcada como **referencial/no oficial**; deben validarse con Invemar, el Instituto Humboldt o MinAmbiente antes de publicarse.
 
-## Aportes 
-Estamos felices que quieras ayudar a que este proyecto crezca, por favor crea un issue en Github con tus comentarios ya sean errores detectados, mejoras, sugerencias o datos que podamos agregar.
+## 🧰 Tecnologías utilizadas
 
-Si deseas donar para que nuestro proyecto siga adelante https://github.com/sponsors/Mteheran
+| Categoría        | Tecnología |
+| ---------------- | ---------- |
+| Framework UI     | [React 19](https://react.dev) |
+| Build / dev tool | [Vite 7](https://vite.dev) |
+| Lenguaje         | [TypeScript 5](https://www.typescriptlang.org) |
+| Librería visual  | [Chakra UI v2](https://v2.chakra-ui.com) + [Framer Motion](https://www.framer.com/motion/) |
+| Enrutamiento     | [React Router 7](https://reactrouter.com) |
+| Mapa             | [d3-geo](https://d3js.org) + [topojson](https://github.com/topojson/topojson) (Natural Earth) |
+| Iconos           | [React Icons](https://react-icons.github.io/react-icons/) |
+| Testing          | [Vitest](https://vitest.dev) + [Testing Library](https://testing-library.com) |
+| API (backend)    | [API Colombia](https://api-colombia.com) |
+| Hosting          | Azure |
+
+## 🚀 Puesta en marcha
+
+### Requisitos previos
+
+- [Node.js](https://nodejs.org) **>= 20.19** (recomendado LTS 20 o superior)
+- npm (incluido con Node.js)
+
+### Instalación
+
+```bash
+# 1. Clonar el repositorio
+git clone https://github.com/Mteheran/invasivespecie-colombia.git
+cd invasivespecie-colombia
+
+# 2. Instalar dependencias
+npm install
+
+# 3. Iniciar el entorno de desarrollo
+npm run dev
+```
+
+La aplicación quedará disponible en `http://localhost:3000`.
+
+### Scripts disponibles
+
+| Script             | Descripción |
+| ------------------ | ----------- |
+| `npm run dev`      | Inicia el servidor de desarrollo de Vite con recarga en caliente. |
+| `npm run build`    | Verifica los tipos (`tsc`) y genera la build de producción en `build/`. |
+| `npm run preview`  | Sirve localmente la build de producción para previsualizarla. |
+| `npm test`         | Ejecuta la suite de pruebas con Vitest. |
+| `npm run test:watch` | Ejecuta las pruebas en modo interactivo (watch). |
+| `npm run lint`     | Analiza el código con ESLint. |
+
+## 🗂️ Estructura del proyecto
+
+```
+src/
+├── components/     # Componentes reutilizables (navBar, card, filterBar, riskBadge,
+│                   #   colombiaMap, ifYouFind, modales…)
+├── data/           # Tablas locales de ejemplo (speciesExtra, occurrences) — referenciales
+├── hooks/          # Hooks de datos (useSpecies con caché)
+├── i18n/           # Traducciones ES/EN y proveedor de idioma
+├── pages/          # Páginas por ruta (home, especie, mapa, queHacer, acerca, layout)
+├── services/       # Llamadas a la API de especies invasoras + enriquecimiento
+├── theme/          # Tema de Chakra UI (colores, tipografía, componentes)
+├── utils/          # Filtros/orden, riesgo, funciones, constantes e imágenes
+└── index.tsx       # Punto de entrada de la aplicación
+```
+
+### Rutas
+
+| Ruta | Descripción |
+| ---- | ----------- |
+| `/` | Home: hero, buscador, filtros y rejilla de especies |
+| `/especie/:id` | Ficha completa de una especie (los enlaces antiguos `/?id=` redirigen aquí) |
+| `/mapa` | Mapa de distribución por región |
+| `/que-hacer` | Guía «Si la encuentras» y reporte de avistamientos |
+| `/acerca` | Información del proyecto |
+
+## 📦 Despliegue
+
+El comando `npm run build` genera los archivos estáticos en la carpeta `build/`, listos para publicarse en cualquier hosting de sitios estáticos (Azure Static Web Apps, Netlify, Vercel, GitHub Pages, etc.).
+
+## 🤝 Aportes
+
+Estamos felices de que quieras ayudar a que este proyecto crezca. Por favor crea un _issue_ en GitHub con tus comentarios, ya sean errores detectados, mejoras, sugerencias o datos que podamos agregar.
+
+Si deseas donar para que nuestro proyecto siga adelante: https://github.com/sponsors/Mteheran
 
 ## Contributors ✨
 

@@ -1,7 +1,10 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { renderWithProviders, screen } from '../../test-utils';
 import SearchBar from './searchBar';
 
-test('renders learn react link', () => {
-  render(<SearchBar value=''/>);
+describe('SearchBar', () => {
+  it('renders the search input', () => {
+    renderWithProviders(<SearchBar value="" />);
+    expect(screen.getByPlaceholderText('Buscar')).toBeInTheDocument();
+  });
 });

@@ -1,7 +1,9 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { describe, it } from 'vitest';
+import { renderWithProviders } from '../../test-utils';
 import CardList from './';
 
-test('renders learn react link', () => {
-  render(<CardList cards={[]} columns='' />);
+describe('CardList', () => {
+  it('renders without crashing when the list is empty', () => {
+    renderWithProviders(<CardList cards={[]} columns="1fr" />);
+  });
 });
