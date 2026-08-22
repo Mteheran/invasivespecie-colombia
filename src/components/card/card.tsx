@@ -16,6 +16,7 @@ import ShareModal from "../shareModal";
 import RiskBadge from "../riskBadge/RiskBadge";
 import Chip from "../chip/Chip";
 import { kindLabel } from "../../data/speciesExtra";
+import { SITE_URL } from "../../utils/constants";
 import { useLang, useT } from "../../i18n/lang";
 
 interface CardProps {
@@ -30,7 +31,7 @@ const Card: FC<CardProps> = ({ card }) => {
   const reduceMotion = usePrefersReducedMotion();
 
   const search = params.get("search");
-  const shareUrl = new URL(document.URL).origin + "/especie/" + card.id;
+  const shareUrl = `${SITE_URL}/especie/${card.id}`;
   const sheetHref = `/especie/${card.id}${search ? `?search=${encodeURIComponent(search)}` : ''}`;
 
   return (

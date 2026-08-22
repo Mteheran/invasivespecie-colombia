@@ -25,6 +25,7 @@ import { OCCURRENCES } from "../../data/occurrences";
 import { kindLabel } from "../../data/speciesExtra";
 import { useLang, useT } from "../../i18n/lang";
 import Seo from "../../components/seo/Seo";
+import { SITE_URL } from "../../utils/constants";
 
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -101,7 +102,7 @@ export default function EspeciePage() {
     };
   }, [id]);
 
-  const shareUrl = useMemo(() => new URL(document.URL).origin + "/especie/" + id, [id]);
+  const shareUrl = useMemo(() => `${SITE_URL}/especie/${id}`, [id]);
   const mapPoints = useMemo(
     () => OCCURRENCES.filter((o) => o.specieId === Number(id)),
     [id]
