@@ -38,7 +38,7 @@ export default function Footer() {
         </HStack>
       </Link>
 
-      <Link href="https://mteheran.dev" {...linkProps}>
+      <Link href="https://github.com/Mteheran" {...linkProps}>
         {t.footer.author}
       </Link>
 
