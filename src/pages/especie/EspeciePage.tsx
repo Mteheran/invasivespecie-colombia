@@ -14,6 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Link as RouterLink, useParams, useSearchParams, useNavigate } from "react-router-dom";
 import { fetchInvasiveSpecie, enrichSpecie, type EnrichedSpecie } from "../../services/invasiveSpecie";
+import { getCachedSpecieById } from "../../hooks/useSpecies";
 import ImageContainer from "../../components/imageContainer";
 import RiskBadge from "../../components/riskBadge/RiskBadge";
 import Chip from "../../components/chip/Chip";
@@ -73,6 +74,16 @@ export default function EspeciePage() {
   useEffect(() => {
     if (!id) return;
     let active = true;
+
+    // 1) Usa el caché en memoria si la especie ya está cargada (sin llamar a la API).
+    const cached = getCachedSpecieById(Number(id));
+    if (cached) {
+      setSpecie(cached);
+      setStatus("ready");
+      return;
+    }
+
+    // 2) Respaldo para enlaces directos con caché vacío: una sola llamada por id.
     setStatus("loading");
     fetchInvasiveSpecie(id)
       .then((data) => {
