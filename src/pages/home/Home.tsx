@@ -21,6 +21,7 @@ import { useSpecies, searchSpecies } from "../../hooks/useSpecies";
 import { parseFilters, filterAndSort, isDefaultFilters, DEFAULT_FILTERS, applyFiltersToParams } from "../../utils/filters";
 import { exampleDepartmentCount } from "../../data/speciesExtra";
 import { useT } from "../../i18n/lang";
+import Seo from "../../components/seo/Seo";
 import background from "../../utils/images/background.jpg";
 
 const PAGE = 9;
@@ -102,6 +103,7 @@ export default function Home() {
 
   return (
     <>
+      <Seo title={t.seo.homeTitle} description={t.seo.homeDesc} path="/" />
       {/* Hero */}
       <Box
         color="white"

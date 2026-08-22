@@ -23,6 +23,7 @@ import ColombiaMap from "../../components/colombiaMap/ColombiaMap";
 import { OCCURRENCES } from "../../data/occurrences";
 import { kindLabel } from "../../data/speciesExtra";
 import { useLang, useT } from "../../i18n/lang";
+import Seo from "../../components/seo/Seo";
 
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
@@ -135,8 +136,18 @@ export default function EspeciePage() {
     { k: t.sheet.source, v: "API Colombia" },
   ];
 
+  const riskTxt = specie.riskLevel >= 2 ? t.risk.high : specie.riskLevel === 1 ? t.risk.medium : t.risk.low;
+  const seoDesc = `${specie.name} (${specie.scientificName}) · ${riskTxt}. ${specie.impact}`.slice(0, 160);
+
   return (
     <>
+      <Seo
+        title={`${specie.name} (${specie.scientificName}) · ${t.seo.titleSuffix}`}
+        description={seoDesc}
+        path={`/especie/${specie.id}`}
+        image={specie.urlImage || undefined}
+        type="article"
+      />
       {/* Migas de pan */}
       <Box px={{ base: "16px", md: "40px" }} pt="18px" fontFamily="body" fontSize="13px" color="brand.600">
         <ChakraLink as={RouterLink} to="/" _hover={{ color: "brand.900" }}>

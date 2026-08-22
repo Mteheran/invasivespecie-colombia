@@ -2,6 +2,7 @@ import { Box, Heading, Text, Wrap, WrapItem, Link } from "@chakra-ui/react";
 import { useEffect } from "react";
 import Chip from "../../components/chip/Chip";
 import { useT } from "../../i18n/lang";
+import Seo from "../../components/seo/Seo";
 
 const TECH = ["React 19", "Vite 7", "TypeScript 5", "Chakra UI v2", "React Router 7", "d3-geo", "API Colombia"];
 
@@ -24,6 +25,7 @@ export default function AcercaPage() {
 
   return (
     <Box maxW="820px" mx="auto" px={{ base: "16px", md: "24px" }} py={{ base: "28px", md: "44px" }}>
+      <Seo title={`${t.seo.aboutTitle} · ${t.seo.titleSuffix}`} description={t.seo.aboutDesc} path="/acerca" />
       <Heading as="h1" fontFamily="heading" fontWeight={800} fontSize={{ base: "30px", md: "38px" }} letterSpacing="-.5px" color="brand.900" mb="16px">
         {t.about.title}
       </Heading>

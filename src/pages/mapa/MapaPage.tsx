@@ -7,6 +7,7 @@ import { OCCURRENCES, type Occurrence } from "../../data/occurrences";
 import { getSpeciesExtra, type SpeciesKind, type HabitatKey } from "../../data/speciesExtra";
 import { riskColorToken, type RiskKey } from "../../utils/risk";
 import { useT } from "../../i18n/lang";
+import Seo from "../../components/seo/Seo";
 
 const RISK_ORDER: RiskKey[] = ["high", "medium", "low"];
 
@@ -82,6 +83,7 @@ export default function MapaPage() {
 
   return (
     <Box maxW="1180px" mx="auto" px={{ base: "16px", md: "24px" }} py={{ base: "24px", md: "28px" }} pb="36px">
+      <Seo title={`${t.seo.mapTitle} · ${t.seo.titleSuffix}`} description={t.seo.mapDesc} path="/mapa" />
       <Flex align="flex-end" justify="space-between" gap="24px" mb="18px" wrap="wrap">
         <Box>
           <Heading as="h1" fontFamily="heading" fontWeight={800} fontSize="30px" letterSpacing="-.5px" color="brand.900">

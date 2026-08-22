@@ -131,6 +131,18 @@ const es = {
   common: {
     back: 'Volver',
   },
+  seo: {
+    siteName: 'Especies Invasoras de Colombia',
+    titleSuffix: 'Especies Invasoras de Colombia',
+    homeTitle: 'Especies Invasoras de Colombia · Riesgo, impacto y qué hacer',
+    homeDesc: 'Consulta las especies invasoras de Colombia: nivel de riesgo, impacto en los ecosistemas, distribución en el mapa y qué hacer si las encuentras. Datos de API Colombia.',
+    mapTitle: 'Mapa de especies invasoras de Colombia',
+    mapDesc: 'Mapa de la presencia reportada de especies invasoras por región en Colombia, filtrable por nivel de riesgo.',
+    whatToDoTitle: 'Qué hacer si encuentras una especie invasora',
+    whatToDoDesc: 'Pasos para actuar de forma segura y reportar un avistamiento de especies invasoras a la autoridad ambiental en Colombia.',
+    aboutTitle: 'Acerca del proyecto',
+    aboutDesc: 'Portal educativo sobre las especies invasoras de Colombia, su nivel de riesgo e impacto en los ecosistemas. Datos de API Colombia.',
+  },
 };
 
 const en: typeof es = {
@@ -263,6 +275,18 @@ const en: typeof es = {
   },
   common: {
     back: 'Back',
+  },
+  seo: {
+    siteName: 'Invasive Species of Colombia',
+    titleSuffix: 'Invasive Species of Colombia',
+    homeTitle: 'Invasive Species of Colombia · Risk, impact and what to do',
+    homeDesc: 'Explore the invasive species of Colombia: risk level, ecosystem impact, distribution map and what to do if you find them. Data from API Colombia.',
+    mapTitle: 'Map of invasive species in Colombia',
+    mapDesc: 'Map of the reported presence of invasive species by region in Colombia, filterable by risk level.',
+    whatToDoTitle: 'What to do if you find an invasive species',
+    whatToDoDesc: 'Steps to act safely and report a sighting of invasive species to the environmental authority in Colombia.',
+    aboutTitle: 'About the project',
+    aboutDesc: 'Educational portal about the invasive species of Colombia, their risk level and ecosystem impact. Data from API Colombia.',
   },
 };
 

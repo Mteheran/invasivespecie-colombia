@@ -75,11 +75,18 @@ La aplicación quedará disponible en `http://localhost:3000`.
 | Script             | Descripción |
 | ------------------ | ----------- |
 | `npm run dev`      | Inicia el servidor de desarrollo de Vite con recarga en caliente. |
-| `npm run build`    | Verifica los tipos (`tsc`) y genera la build de producción en `build/`. |
+| `npm run build`    | Genera el `sitemap.xml` (`prebuild`), verifica los tipos (`tsc`) y genera la build de producción en `build/`. |
 | `npm run preview`  | Sirve localmente la build de producción para previsualizarla. |
+| `npm run sitemap`  | Regenera `public/sitemap.xml` con las rutas estáticas + una entrada por especie (desde la API). |
 | `npm test`         | Ejecuta la suite de pruebas con Vitest. |
 | `npm run test:watch` | Ejecuta las pruebas en modo interactivo (watch). |
 | `npm run lint`     | Analiza el código con ESLint. |
+
+### 🔍 SEO
+
+- Metadatos por página (`<title>`, `description`, canonical, **Open Graph** y **Twitter Cards**) gestionados por [`Seo`](src/components/seo/Seo.tsx), que se actualizan en cada cambio de ruta e idioma.
+- Metadatos por defecto y **datos estructurados** (JSON-LD `WebSite` con `SearchAction` + `Organization`) en [`index.html`](index.html).
+- [`robots.txt`](public/robots.txt) con referencia al sitemap y [`sitemap.xml`](public/sitemap.xml) generado en cada build (rutas estáticas + fichas de especies).
 
 ## 🗂️ Estructura del proyecto
 
