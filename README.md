@@ -7,6 +7,8 @@ Portal web que visualiza las **especies invasoras de Colombia** (plantas y anima
 
 Los datos se consumen en tiempo real desde [API Colombia](https://api-colombia.com).
 
+🌐 **Sitio oficial:** https://especiesinvasoras.api-colombia.com/
+
 ## 🎯 Objetivo del proyecto
 
 Con este proyecto queremos generar conciencia en las personas sobre cómo se deben manejar las especies invasoras y cómo estas afectan nuestros ecosistemas nativos.
@@ -27,18 +29,23 @@ Con este proyecto queremos generar conciencia en las personas sobre cómo se deb
 
 ## 🧰 Tecnologías utilizadas
 
-| Categoría        | Tecnología |
-| ---------------- | ---------- |
-| Framework UI     | [React 19](https://react.dev) |
-| Build / dev tool | [Vite 7](https://vite.dev) |
-| Lenguaje         | [TypeScript 5](https://www.typescriptlang.org) |
-| Librería visual  | [Chakra UI v2](https://v2.chakra-ui.com) + [Framer Motion](https://www.framer.com/motion/) |
-| Enrutamiento     | [React Router 7](https://reactrouter.com) |
-| Mapa             | [d3-geo](https://d3js.org) + [topojson](https://github.com/topojson/topojson) (Natural Earth) |
-| Iconos           | [React Icons](https://react-icons.github.io/react-icons/) |
-| Testing          | [Vitest](https://vitest.dev) + [Testing Library](https://testing-library.com) |
-| API (backend)    | [API Colombia](https://api-colombia.com) |
-| Hosting          | Azure |
+| Categoría        | Tecnología | Versión |
+| ---------------- | ---------- | ------- |
+| Framework UI     | [React](https://react.dev) | 19.2 |
+| Build / dev tool | [Vite](https://vite.dev) | 7.3 |
+| Lenguaje         | [TypeScript](https://www.typescriptlang.org) | 5.9 |
+| Librería visual  | [Chakra UI](https://v2.chakra-ui.com) | 2.10 (v2) |
+| Animaciones      | [Framer Motion](https://www.framer.com/motion/) | 11.18 |
+| Estilado         | [Emotion](https://emotion.sh) | 11.14 |
+| Enrutamiento     | [React Router](https://reactrouter.com) | 7.18 |
+| Mapa             | [d3](https://d3js.org) · [topojson-client](https://github.com/topojson/topojson-client) (Natural Earth) | 7.9 · 3.1 |
+| Iconos           | [React Icons](https://react-icons.github.io/react-icons/) | 5.7 |
+| Testing          | [Vitest](https://vitest.dev) · [Testing Library](https://testing-library.com) | 3.2 · 16.3 |
+| Linter           | [ESLint](https://eslint.org) | 9.39 |
+| API (backend)    | [API Colombia](https://api-colombia.com) | v1 |
+| Hosting          | Azure | — |
+
+> Las versiones reflejan las instaladas actualmente; consulta [`package.json`](package.json) para los rangos exactos. `d3` y `topojson-client` se cargan por CDN (pineados con `integrity` en [`index.html`](index.html)).
 
 ## 🚀 Puesta en marcha
 
