@@ -1,34 +1,25 @@
 import * as React from "react";
 import Card from "../card";
-import { IInvasiveSpecie } from "../../services/invasiveSpecie";
-import {Center, Grid } from "@chakra-ui/react";
+import { EnrichedSpecie } from "../../services/invasiveSpecie";
+import { Grid } from "@chakra-ui/react";
 
 interface CardListProps {
-  cards: IInvasiveSpecie[]
-  columns: string
+  cards: EnrichedSpecie[];
+  columns: string;
 }
 
-const CardList: React.FC<CardListProps> = ({cards, columns}) => {
-
+const CardList: React.FC<CardListProps> = ({ cards, columns }) => {
   if (!cards || cards.length === 0) {
     return null;
   }
 
   return (
-    <Center>
-      <Grid 
-        templateColumns={columns}
-        gap='2rem'
-        m='2rem'
-      >
-        {
-          cards?.map((card) => (
-            <Card card={card} key={card.id}/>
-          ))
-        }
-      </Grid>
-    </Center>
+    <Grid templateColumns={columns} gap="24px">
+      {cards.map((card) => (
+        <Card card={card} key={card.id} />
+      ))}
+    </Grid>
   );
-}
+};
 
 export default CardList;

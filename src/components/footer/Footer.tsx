@@ -1,57 +1,62 @@
-import { 
-    ButtonGroup,
-    Flex,
-    IconButton,
-    Text,
-    HStack,
-    VStack,
-    Link,
-    LinkProps, 
-    Icon
-} from '@chakra-ui/react'
-import { FaGithub, FaHeart } from 'react-icons/fa'
+import { Flex, HStack, Text, Link, Spacer, Icon } from '@chakra-ui/react';
+import { FaGithub, FaHeart } from 'react-icons/fa';
+import Flag from '../flag/Flag';
+import { useT } from '../../i18n/lang';
 
-const CustomLink = ({ children, ...props }: LinkProps) => {
-    return (
-      <Link href={props.href} fontSize="sm" isExternal _hover={{ textDecoration: 'underline' }} {...props}>
-        {children}
-      </Link>
-    );
-  };
+export default function Footer() {
+  const t = useT();
 
-export default function Footer () {
-    return (
-        <Flex sx={{ position: 'sticky', bottom: '0',  }} bg='#363c31' w='100%' justifyContent="space-around" maxW='100%' as="footer" role="contentinfo" p={{ base: '4', md: '4' }} >            
-        <HStack
-          spacing={20}
-          justifyContent={{ sm: 'space-between', md: 'normal' }}
-          alignItems='center'
-        >
-          <VStack spacing={4} alignItems="flex-center" color='white'>
-            <HStack spacing={2} alignItems='center'>
-                <CustomLink href={'https://github.com/sponsors/Mteheran'}>
-                    <HStack spacing={2} alignItems='center'>
-                        <Text>Contribuir</Text>
-                        <Icon color='red' as={FaHeart}></Icon>
-                    </HStack>
-                </CustomLink>
-            </HStack>
-          </VStack>
+  const linkProps = {
+    color: 'brand.200',
+    fontFamily: 'body',
+    fontSize: '13px',
+    fontWeight: 400,
+    isExternal: true,
+    _hover: { color: 'sand', textDecoration: 'none' },
+  } as const;
 
-          <VStack spacing={4} alignItems="flex-center" color='white'>
-              <CustomLink href={'https://mteheran.dev'}>Conoce al autor</CustomLink>
-          </VStack>
+  return (
+    <Flex
+      as="footer"
+      role="contentinfo"
+      bg="brand.800"
+      color="brand.200"
+      align="center"
+      wrap="wrap"
+      gap={{ base: '14px', md: '28px' }}
+      px={{ base: '16px', md: '40px' }}
+      py="22px"
+    >
+      <Text color="sand" fontFamily="body" fontWeight={600} fontSize="13px">
+        {t.nav.brand}
+      </Text>
 
-          <VStack spacing={4} alignItems="flex-center" color='white'>
-            <ButtonGroup variant="tertiary">
-            <IconButton as="a" href={'https://github.com/Mteheran/invasivespecie-colombia'}
-                          target='_blank'
-                          aria-label="GitHub" icon={<FaGithub />} />
-            </ButtonGroup>
-          </VStack>
+      <Link href="https://github.com/sponsors/Mteheran" {...linkProps}>
+        <HStack spacing="6px">
+          <Text>{t.footer.contribute}</Text>
+          <Icon as={FaHeart} color="red.400" boxSize="12px" />
         </HStack>
+      </Link>
 
-      </Flex>
-    )
+      <Link href="https://github.com/Mteheran" {...linkProps}>
+        {t.footer.author}
+      </Link>
+
+      <Link href="https://github.com/Mteheran/invasivespecie-colombia" {...linkProps}>
+        <HStack spacing="6px">
+          <Icon as={FaGithub} boxSize="14px" />
+          <Text>{t.footer.github}</Text>
+        </HStack>
+      </Link>
+
+      <Spacer />
+
+      <HStack spacing="8px">
+        <Flag width={18} height={13} />
+        <Text fontFamily="body" fontSize="12px">
+          {t.footer.dataSource}
+        </Text>
+      </HStack>
+    </Flex>
+  );
 }
-

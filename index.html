@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/faviconEspecie.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#363c31" />
+    <meta name="author" content="Mteheran.dev" />
+    <meta name="language" content="es-ES" />
+    <meta name="keywords" content="especies invasoras, especies nativas, colombia, biodiversidad" />
+    <meta
+      name="description"
+      content="Consulta las especies invasoras de Colombia: nivel de riesgo, impacto en los ecosistemas, distribución en el mapa y qué hacer si las encuentras. Datos de API Colombia."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://especiesinvasoras.api-colombia.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Especies Invasoras de Colombia" />
+    <meta property="og:title" content="Especies Invasoras de Colombia · Riesgo, impacto y qué hacer" />
+    <meta property="og:description" content="Consulta las especies invasoras de Colombia: nivel de riesgo, impacto, distribución y qué hacer si las encuentras. Datos de API Colombia." />
+    <meta property="og:url" content="https://especiesinvasoras.api-colombia.com/" />
+    <meta property="og:image" content="https://especiesinvasoras.api-colombia.com/logo512.png" />
+    <meta property="og:locale" content="es_CO" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Especies Invasoras de Colombia · Riesgo, impacto y qué hacer" />
+    <meta name="twitter:description" content="Consulta las especies invasoras de Colombia: nivel de riesgo, impacto, distribución y qué hacer si las encuentras." />
+    <meta name="twitter:image" content="https://especiesinvasoras.api-colombia.com/logo512.png" />
+
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Geometría del mapa (Natural Earth) — d3 + topojson pineados con integrity -->
+    <script src="https://unpkg.com/d3@7.9.0/dist/d3.min.js" integrity="sha384-CjloA8y00+1SDAUkjs099PVfnY2KmDC2BZnws9kh8D/lX1s46w6EPhpXdqMfjK6i" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/topojson-client@3.1.0/dist/topojson-client.min.js" integrity="sha384-Ukv1p/xTma6P4/2bY5KzWBw+ydSpXmhCMtyciIQVDJ1RmOxtCYNMF1uXT9T63H67" crossorigin="anonymous"></script>
+    <title>Especies Invasoras de Colombia</title>
+
+    <!-- Datos estructurados (Schema.org) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Especies Invasoras de Colombia",
+        "alternateName": "Invasive Species of Colombia",
+        "url": "https://especiesinvasoras.api-colombia.com/",
+        "description": "Portal para consultar las especies invasoras de Colombia: nivel de riesgo, impacto en los ecosistemas, distribución y qué hacer si las encuentras.",
+        "inLanguage": ["es", "en"],
+        "publisher": {
+          "@type": "Organization",
+          "name": "API Colombia",
+          "url": "https://api-colombia.com"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://especiesinvasoras.api-colombia.com/?search={search_term_string}"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <noscript>Necesitas habilitar JavaScript para usar esta aplicación.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>

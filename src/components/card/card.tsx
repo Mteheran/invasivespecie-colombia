@@ -1,88 +1,129 @@
-import * as React from "react";
+import { FC, useState } from "react";
 import {
-  Button,
-  Card as DesignCard,
-  CardBody,
+  Box,
   Heading,
   Text,
-  ButtonGroup
+  HStack,
+  Button,
+  IconButton,
+  usePrefersReducedMotion,
 } from '@chakra-ui/react';
-import { IInvasiveSpecie } from "../../services/invasiveSpecie";
-import { useNavigate, useSearchParams } from "react-router-dom";
-import { SearcherContext } from "../../context";
+import { Link as RouterLink, useSearchParams } from "react-router-dom";
+import { FiShare2 } from "react-icons/fi";
+import { EnrichedSpecie } from "../../services/invasiveSpecie";
 import ImageContainer from "../imageContainer";
 import ShareModal from "../shareModal";
-import { FC } from "react";
+import RiskBadge from "../riskBadge/RiskBadge";
+import Chip from "../chip/Chip";
+import { kindLabel } from "../../data/speciesExtra";
+import { useLang, useT } from "../../i18n/lang";
 
 interface CardProps {
-  card: IInvasiveSpecie | undefined
+  card: EnrichedSpecie;
 }
 
-const Card: FC<CardProps> = ({card}) => {
-  const navigate = useNavigate();
+const Card: FC<CardProps> = ({ card }) => {
   const [params] = useSearchParams();
-  const context = React.useContext(SearcherContext);
-
-  const [isModalOpen, setIsModalOpen] = React.useState(false); // Declare isModalOpen variable
+  const { lang } = useLang();
+  const t = useT();
+  const [isShareOpen, setIsShareOpen] = useState(false);
+  const reduceMotion = usePrefersReducedMotion();
 
   const search = params.get("search");
-
-  const openModalDetails = (id:number) => {
-    if(search) {
-      navigate(`?search=${search}&id=${id}`);
-    }
-    else {
-    navigate(`?id=${id}`);
-    }
-    context.setIsModalOpen(true);
-  }
-
-  const openModalShare = (id:number) => {
-    setIsModalOpen(true);
-  }
-
-  const ShareUrl = (new URL(document.URL).origin) + "/?id=" + card?.id;
+  const shareUrl = new URL(document.URL).origin + "/especie/" + card.id;
+  const sheetHref = `/especie/${card.id}${search ? `?search=${encodeURIComponent(search)}` : ''}`;
 
   return (
-    <DesignCard
-      maxW='sm'
-      alignItems="center"
-      overflow='hidden'
-      boxShadow="0px 4px 11px 1px gray"
-      padding="15px"
-      borderRadius="25px"
-      bg='linear-gradient(144deg, #b8c1ac, #47533d)' 
+    <Box
+      bg="sand"
+      borderRadius="22px"
+      overflow="hidden"
+      boxShadow="0 10px 25px -12px rgba(30,32,23,.4)"
+      display="flex"
+      flexDirection="column"
+      transition="transform .25s ease, box-shadow .25s ease"
+      _hover={
+        reduceMotion
+          ? { boxShadow: '0 16px 32px -12px rgba(30,32,23,.5)' }
+          : { transform: 'translateY(-4px)', boxShadow: '0 16px 32px -12px rgba(30,32,23,.5)' }
+      }
     >
-      <ImageContainer imgURL={card?.urlImage} imgAlt={card?.name} />
-      <CardBody width='100%' p='10px' bg='#feeee4' mt='20px' borderBottomRadius='15px' alignItems='center' display='flex' flexDirection='column'>
-        <Heading size='md' fontSize='28px' color='#1e2017' textAlign='center' fontFamily='cursive' fontWeight='800' mb="5px"> {card?.name} </Heading>
-        <Text color='#1e2017' fontSize='14px' fontFamily='roboto' textAlign='center' fontWeight='600'> {card?.scientificName} </Text>
-        <ButtonGroup spacing='1rem' borderTop='solid 1px #1e2017' pt='15px' mt='15px'>
-          <Button 
-            variant='default'
-            p={['20px 10px', ]}
-            onClick={()=> openModalDetails(card ? card?.id : 0)}
+      <Box position="relative">
+        <ImageContainer imgURL={card.urlImage} imgAlt={card.name} aspectRatio={16 / 11} rounded={false} />
+        <Box position="absolute" top="14px" left="14px" zIndex={2}>
+          <RiskBadge level={card.riskLevel} size="md" withShadow />
+        </Box>
+      </Box>
+
+      <Box p="16px 18px 18px" display="flex" flexDirection="column" flex="1">
+        <Heading
+          as={RouterLink}
+          to={sheetHref}
+          fontFamily="heading"
+          fontWeight={700}
+          fontSize="22px"
+          lineHeight="1.15"
+          color="brand.900"
+          mb="3px"
+          _hover={{ textDecoration: 'underline' }}
+        >
+          {card.name}
+        </Heading>
+        <Text fontFamily="body" fontStyle="italic" fontWeight={500} fontSize="13px" color="brand.600" mb="12px">
+          {card.scientificName}
+        </Text>
+
+        <HStack spacing="7px" mb="14px">
+          <Chip>{kindLabel(card.extra.kind, lang)}</Chip>
+          <Chip>{card.extra.habitat}</Chip>
+        </HStack>
+
+        <Text fontFamily="body" fontWeight={400} fontSize="13.5px" lineHeight="1.55" color="brand.700" flex="1" mb="18px" noOfLines={3}>
+          {card.impact}
+        </Text>
+
+        <HStack spacing="10px" borderTop="1px solid rgba(30,32,23,.14)" pt="14px">
+          <Button
+            as={RouterLink}
+            to={sheetHref}
+            flex="1"
+            bg="brand.700"
+            color="sand"
+            borderRadius="11px"
+            py="12px"
+            height="auto"
+            fontFamily="body"
+            fontWeight={700}
+            fontSize="12.5px"
+            textTransform="uppercase"
+            letterSpacing=".05em"
+            textAlign="center"
+            _hover={{ bg: 'brand.800', textDecoration: 'none' }}
           >
-            Ver detalle
+            {t.card.viewSheet}
           </Button>
-          <Button 
-            variant='default'
-            p={['20px 10px']}
-            onClick={()=> openModalShare(card ? card?.id : 0)}
-          >
-            Compartir
-          </Button>
-          {/** TODO: Change ShareModal into context component for avoiding component re-rendering */}
-          <ShareModal 
-            setIsModalOpen={setIsModalOpen}
-            shareURL={ShareUrl}
-            isOpen={isModalOpen}
-            speciesName={card?.name}
+          <IconButton
+            aria-label={t.card.share}
+            onClick={() => setIsShareOpen(true)}
+            boxSize="44px"
+            variant="outline"
+            borderColor="brand.200"
+            color="brand.700"
+            borderRadius="11px"
+            icon={<FiShare2 />}
+            _hover={{ bg: 'brand.100' }}
           />
-        </ButtonGroup>
-      </CardBody>
-    </DesignCard>
+        </HStack>
+      </Box>
+
+      <ShareModal
+        setIsModalOpen={setIsShareOpen}
+        shareURL={shareUrl}
+        isOpen={isShareOpen}
+        speciesName={card.name}
+      />
+    </Box>
   );
-}
+};
 
 export default Card;

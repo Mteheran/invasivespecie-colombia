@@ -1,17 +1,10 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { renderWithProviders, screen } from '../../test-utils';
 import Main from './main';
 
-describe('Main Page Test', () => {
-  test('renders learn react link', () => {
-    render(<Main />);
+describe('Main layout', () => {
+  it('renders the nav wordmark and footer without crashing', () => {
+    renderWithProviders(<Main />);
+    expect(screen.getAllByText(/Especies Invasoras/i).length).toBeGreaterThan(0);
   });
-  test('Url with a search', () => {
-    render(<Main />);
-  });
-  test('Url with an id', () => {
-    render(<Main />);
-  });
-})
-
-
+});
