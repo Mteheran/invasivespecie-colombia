@@ -116,7 +116,10 @@ export default function Home() {
         <Box maxW="760px">
           <HStack
             spacing="12px"
-            bg="rgba(254,238,228,.14)"
+            bg="rgba(30,32,23,.62)"
+            border="1px solid"
+            borderColor="rgba(254,238,228,.3)"
+            backdropFilter="blur(6px)"
             borderRadius="999px"
             pl="10px"
             pr="17px"
@@ -131,7 +134,7 @@ export default function Home() {
               fontSize="14px"
               textTransform="uppercase"
               letterSpacing=".12em"
-              color="brand.200"
+              color="sand"
             >
               {t.hero.eyebrow}
             </Text>
